@@ -9,7 +9,7 @@ import menu from "./menu.svg";
 import close from "./close.svg";
 // import ravi from "./ravi.jpg";
 import chatgpt from "./chatgpt.png";
-import manoffice from "./manoffice.gif"
+// import manoffice from "./manoffice.gif"
 // import officeplus from "./officeplus.gif"
 import standingman from "./standingman.png"
 import studying from "./studying.png"
@@ -79,7 +79,7 @@ export {
   seo,
   Zerociti,
   HoneyUncle,
-  manoffice,
+  // manoffice,
   // officeplus,
   standingman,
   studying,
