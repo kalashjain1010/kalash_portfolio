@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import p5 from 'p5';
 import './MyWebsite.css';
+import LazyLoad from 'react-lazyload';
 
 const Hero = () => {
   const canvasRef = useRef(null);
@@ -112,7 +113,11 @@ const Hero = () => {
     };
   }, []);
 
-  return <div ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }} />;
+  return (
+    <LazyLoad height={600} offset={100} once>
+    <div ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }} />
+  </LazyLoad>
+  )
 };
 
 export default Hero;
