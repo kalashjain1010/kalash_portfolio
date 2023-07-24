@@ -18,7 +18,8 @@ import {
   vue,
   github,
   colab,
-  create
+  create,
+  wordcount
   // personal,
   // live
 } from "../assets";
@@ -168,6 +169,53 @@ const testimonials = [
 
 const projects = [
   {
+    name: "Cre8Team",
+  description:
+    "platform connects companies with job seekers, offering job postings and opportunities for relevant job matches with interactive user interface.",
+    tags: [
+      {
+        name: "Nextjs",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "TailwindCss",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Firebase",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: create,
+    project_link: "https://cre8-iota.vercel.app/",
+    source_code_link: "https://github.com/kalashjain1010/Colab",
+    minImg: github,
+  },
+  
+  {
+    name: "Speed Types",
+  description:
+    "Developed a web-based typing speed application using React. Created an interactive user interface with features such as time tracking, accuracy calculation..",
+  tags: [
+    {
+      name: "react",
+      color: "blue-text-gradient",
+    },
+    {
+      name: "JSON",
+      color: "green-text-gradient",
+    },
+    {
+      name: "Tailwind css",
+      color: "pink-text-gradient",
+    },
+    ],
+    image: Zerociti,
+    project_link:"https://speed-type-liart.vercel.app/",
+    source_code_link: "https://github.com/kalashjain1010/Speed-type",
+    minImg: github,
+  },
+  {
     name: "Reddit Clone",
     description:
     "The main features of a Reddit clone include user-generated content, voting on content, commenting, and subreddits (topic-specific communities).",
@@ -186,56 +234,11 @@ const projects = [
       },
     ],
     image: chatgpt,
-    project_link: "https://github.com/kalashjain1010",
+    project_link: "https://github.com/kalashjain1010/Redit",
     source_code_link: "https://github.com/kalashjain1010/Redit",
     minImg: github,
   },
-  {
-    name: "Speed Types",
-  description:
-    "Developed a web-based typing speed application using React. Created an interactive user interface with features such as time tracking, accuracy calculation..",
-  tags: [
-    {
-      name: "react",
-      color: "blue-text-gradient",
-    },
-    {
-      name: "ThreeJs",
-      color: "green-text-gradient",
-    },
-    {
-      name: "Tailwind css",
-      color: "pink-text-gradient",
-    },
-    ],
-    image: Zerociti,
-    project_link:"https://github.com",
-    source_code_link: "https://github.com/kalashjain1010/Speed-type",
-    minImg: github,
-  },
-  {
-    name: "Cre8Team",
-  description:
-    "platform connects companies with job seekers, offering job postings and opportunities for relevant job matches with interactive user interface.",
-    tags: [
-      {
-        name: "Reactjs",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "TailwindCss",
-        color: "green-text-gradient",
-      },
-      {
-        name: "js",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: create,
-    project_link: "https://cre8-iota.vercel.app/",
-    source_code_link: "https://github.com/kalashjain1010/Colab",
-    minImg: github,
-  },
+  
   {
     name: "Word Counter",
   description:
@@ -246,7 +249,7 @@ const projects = [
         color: "blue-text-gradient",
       },
       {
-        name: "TailwindCss",
+        name: "Bootstrap",
         color: "green-text-gradient",
       },
       {
@@ -254,33 +257,12 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: create,
-    project_link: "https://cre8-iota.vercel.app/",
-    source_code_link: "https://github.com/kalashjain1010/Colab",
+    image: wordcount,
+    project_link: "https://regal-profiterole-d32bda.netlify.app/",
+    source_code_link: "https://github.com/kalashjain1010/WordCounterUsingReact",
     minImg: github,
   },
-  // {
-  //   name: "Word Counter",
-  // description:
-  //   "This app takes user input in the form of a string and returns the total word count and total charcters.It also has additional features like covert to upperCase and LowerCase",
-  // tags: [
-  //   {
-  //     name: "Reactjs",
-  //     color: "blue-text-gradient",
-  //   },
-  //   {
-  //     name: "TailwindCss",
-  //     color: "green-text-gradient",
-  //   },
-  //   {
-  //     name: "js",
-  //     color: "pink-text-gradient",
-  //   },
-  // ],
-  //   image: HoneyUncle,
-  //   ssource_code_link: "https://github.com/kalashjain1010/WordCounterUsingReact",
-  //   minImg: github,
-  // },
+
 
 ];
 

@@ -46,25 +46,23 @@ const ProjectCard = ({
           <p className="mt-2 text-secondary text-[14px]">{description}</p>
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap gap-2 justify-between">
           {tags.map((tag) => (
             <p key={tag.name} className={`text-[14px] ${tag.color}`}>
               #{tag.name}
             </p>
-            
           ))}
-           <div className="justify-between">
-            <div
-              onClick={() => window.open(source_code_link, "blank")}
-              className="black-gradient w-10 h-10 rounded-full
+
+          <div
+            onClick={() => window.open(source_code_link, "blank")}
+            className="black-gradient w-10 h-10 rounded-full
                   flex justify-center items-center cursor-pointer "
-            >
-              <img
-                src={minImg}
-                alt="github sources"
-                className="w-1/2 h-1/2 object-contain"
-              />
-            </div>
+          >
+            <img
+              src={minImg}
+              alt="github sources"
+              className="w-1/2 h-1/2 object-contain"
+            />
           </div>
         </div>
       </Tilt>

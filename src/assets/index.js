@@ -48,9 +48,11 @@ import seo from "./company/seo.png";
 import Zerociti from "./zerociti.png";
 import HoneyUncle from "./HoneyUncle.png";
 import create from "./create.png";
+import wordcount from "./wordcount.png";
 
 export {
   create,
+  wordcount,
   logo,
   backend,
   creator,
