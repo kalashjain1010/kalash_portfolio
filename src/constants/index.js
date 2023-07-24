@@ -263,7 +263,6 @@ const projects = [
     minImg: github,
   },
 
-
 ];
 
 export { services, technologies, experiences, testimonials, projects };
