@@ -22,6 +22,7 @@ import twitter from "./twitter.png"
 // import live from "./live.png"
 import warnimg from "./warning.png"
 import resume from "./resume.png"
+import colab from "./colab.png"
 
 
 // import css from "./tech/css.png";
@@ -46,8 +47,10 @@ import seo from "./company/seo.png";
 
 import Zerociti from "./zerociti.png";
 import HoneyUncle from "./HoneyUncle.png";
+import create from "./create.png";
 
 export {
+  create,
   logo,
   backend,
   creator,
@@ -59,6 +62,7 @@ export {
   close,
   // ravi,
   chatgpt,
+  colab,
   // cv,
   // css,
   // docker,

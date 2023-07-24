@@ -17,6 +17,8 @@ import {
   express,
   vue,
   github,
+  colab,
+  create
   // personal,
   // live
 } from "../assets";
@@ -82,6 +84,20 @@ const technologies = [
 
 const experiences = [
   {
+    title: "Front-End Developer",
+  company_name: "Colab",
+    icon: colab,
+    iconBg: "#E6DEDD",
+    date: "May 2023 - July 2023",
+    // date: "Jan 2022 - Jan 2023",
+  points: [
+    "Developed a web application in an international team, focusing on front-end and UI/UX design.",
+    "Created the application using HTML, CSS, JavaScript, and frameworks like NextJs with expertise in UI/UX design principles, responsive web design,and version control systems while showcasing effective teamwork and meeting project deadlines.",
+    "Implementing responsive design and ensuring cross-browser compatibility.",
+    "Delivered an app enabling users to post projects and hire professionals.",
+  ],
+  },
+  {
     title: "Web Developer Intern",
     company_name: "NGTS",
     icon: tech4addiction,
@@ -107,20 +123,7 @@ const experiences = [
     
   ],
   },
-  {
-    title: "Referal India",
-  company_name: "Refferal India",
-    icon: zerociti,
-    iconBg: "#E6DEDD",
-    date: "April 2022 - Oct 2022",
-    date: "Jan 2022 - Jan 2023",
-  points: [
-    "Developing and maintaining web applications using React.js and other related technologies.",
-    "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-    "Implementing responsive design and ensuring cross-browser compatibility.",
-    "Participating in code reviews and providing constructive feedback to other developers.",
-  ],
-  },
+ 
   {
     title: "Full stack App",
     company_name: "Crypto Sensex",
@@ -183,6 +186,7 @@ const projects = [
       },
     ],
     image: chatgpt,
+    project_link: "https://github.com/kalashjain1010",
     source_code_link: "https://github.com/kalashjain1010/Redit",
     minImg: github,
   },
@@ -205,7 +209,31 @@ const projects = [
     },
     ],
     image: Zerociti,
+    project_link:"https://github.com",
     source_code_link: "https://github.com/kalashjain1010/Speed-type",
+    minImg: github,
+  },
+  {
+    name: "Cre8Team",
+  description:
+    "platform connects companies with job seekers, offering job postings and opportunities for relevant job matches with interactive user interface.",
+    tags: [
+      {
+        name: "Reactjs",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "TailwindCss",
+        color: "green-text-gradient",
+      },
+      {
+        name: "js",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: create,
+    project_link: "https://cre8-iota.vercel.app/",
+    source_code_link: "https://github.com/kalashjain1010/Colab",
     minImg: github,
   },
   {
@@ -226,8 +254,9 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: HoneyUncle,
-    source_code_link: "https://github.com/kalashjain1010/WordCounterUsingReact",
+    image: create,
+    project_link: "https://cre8-iota.vercel.app/",
+    source_code_link: "https://github.com/kalashjain1010/Colab",
     minImg: github,
   },
   // {
