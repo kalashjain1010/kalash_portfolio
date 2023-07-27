@@ -1,118 +1,51 @@
-import React, { useEffect, useRef } from 'react';
-import p5 from 'p5';
-import './MyWebsite.css';
+import React from 'react';
 
 const Hero = () => {
-  const canvasRef = useRef(null);
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: '-1',
+        overflow: 'hidden',
+        backgroundColor: '#333333', // Change the background color
+      }}
+    >
+      {/* Astro */}
+      {/* <div
+        style={{
+          position: 'absolute',
+          width: '20px',
+          height: '20px',
+          backgroundColor: '#85fffb',
+          borderRadius: '50%',
+          animation: 'astroAnimation 2s infinite',
+        }}
+        className="astro" // Apply Tailwind classes for the "Astro" object */}
+      {/* /> */}
 
-  useEffect(() => {
-    let astro;
-    let nodes = [];
-
-    const sketch = (p) => {
-      p.setup = () => {
-        const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
-        canvas.position(0, 0); // Position the canvas at the top-left corner
-        canvas.style('z-index', '-1'); // Set the canvas behind other elements
-        canvas.parent(canvasRef.current);
-        astro = new Astro(p.width / 2, p.height / 2);
-        for (let i = 0; i < 100; i++) { // Change the number of initial nodes to 50
-          nodes.push(new Node(p.random(p.width), p.random(p.height)));
-        }
-      };
-
-      p.draw = () => {
-        p.background(51);
-        astro.update(p.mouseX, p.mouseY);
-        astro.show();
-        for (let i = 0; i < nodes.length; i++) {
-          nodes[i].update(astro.x, astro.y);
-          nodes[i].show();
-        }
-      };
-
-      p.windowResized = () => {
-        p.resizeCanvas(p.windowWidth, p.windowHeight);
-      };
-
-      class Astro {
-        constructor(x, y) {
-          this.x = x;
-          this.y = y;
-          this.color = p.color(133, 255, 251);
-          this.r = 10;
-          this.hr = 60;
-          this.vx = 0;
-          this.vy = 0;
-        }
-
-        show() {
-          p.fill(this.color);
-          p.circle(this.x, this.y, this.r);
-        }
-
-        update(mouseX, mouseY) {
-          this.x += this.vx;
-          this.y += this.vy;
-          this.vx = (mouseX - this.x) * 0.1;
-          this.vy = (mouseY - this.y) * 0.1;
-        }
-      }
-
-      class Node {
-        constructor(x, y) {
-          this.x = x;
-          this.y = y;
-          this.color = null;
-          this.length = p.random(20, 100);
-          this.cpd = [p.random(50, 200), p.random(50, 200), p.random(50, 200), p.random(50, 200)];
-          this.angle = 0;
-        }
-
-        show() {
-          p.strokeWeight(3);
-          p.stroke(this.color);
-          p.point(this.x, this.y);
-        }
-
-        update(astroX, astroY) {
-          let cpx = 1;
-          let cpy = 1;
-          this.angle++;
-
-          if (this.x < astroX) cpx = -1;
-          if (this.y > astroY) cpy = -1;
-
-          if (p.dist(this.x, this.y, astroX, astroY) <= this.length) {
-            this.color = p.color(66, 215, 245);
-            p.strokeWeight(1);
-            p.noFill();
-            p.curve(
-              this.x + this.cpd[0] * cpx,
-              this.y + this.cpd[0] * cpy,
-              this.x,
-              this.y,
-              astroX,
-              astroY,
-              astroX + this.cpd[0] * cpx,
-              astroY + this.cpd[0] * cpy
-            );
-          } else {
-            this.color = p.color(156, 248, 255, 100);
-          }
-        }
-      }
-    };
-
-    const myp5 = new p5(sketch);
-
-    // Cleanup function for p5.js
-    return () => {
-      myp5.remove();
-    };
-  }, []);
-
-  return <div ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }} />;
+      {/* Nodes */}
+      {Array.from({ length: 100 }, (_, i) => (
+        <div
+          key={i}
+          style={{
+            position: 'absolute',
+            width: '3px',
+            height: '3px',
+            backgroundColor: 'rgba(66, 215, 245, 0.5)',
+            borderRadius: '50%',
+            animation: 'nodeAnimation 3s infinite',
+            left: `${Math.random() * 100}%`, // Randomize node position
+            top: `${Math.random() * 100}%`,
+          }}
+          className="node" // Apply Tailwind classes for the "Node" objects
+        />
+      ))}
+    </div>
+  );
 };
 
 export default Hero;
