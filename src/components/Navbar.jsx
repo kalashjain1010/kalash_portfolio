@@ -179,7 +179,7 @@ const Navbar = () => {
           className={`${ !toggle
                ? "hidden"
                : "flex"
-            }  p-6 backdrop-blur-sm bg-purple-200 ... absolute top-20
+            }  p-6 backdrop-blur-sm bg-[#63988b] ... absolute top-20
                right-0 mx-4 my-2 min-[140px] z-0 rounded-xl`}
           >
             <ul
@@ -190,7 +190,7 @@ const Navbar = () => {
                 <li
                   key={Link.id}
                   className={`${
-                    active === Link.title ? "text-white" : "text-purple-500"
+                    active === Link.title ? "text-white" : "text-white"
                   } font-poppins text-[16px]
                     cursor-pointer font-medium `}
                   onClick={() => {
