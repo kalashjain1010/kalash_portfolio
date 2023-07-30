@@ -61,7 +61,7 @@ const Astro = ({ position, nodes, lineRadius }) => {
               x2={endX}
               y2={endY}
               stroke="rgba(66, 215, 245, 0.5)"
-              strokeWidth="0.5"
+              strokeWidth="1"
             />
           );
         })}
@@ -106,8 +106,8 @@ const Hero = () => {
         const dx = cursorPosition.x - prevPosition.x;
         const dy = cursorPosition.y - prevPosition.y;
         return {
-          x: prevPosition.x + dx * 0.1,
-          y: prevPosition.y + dy * 0.1,
+          x: prevPosition.x + dx * 0.05, // Increase the delay by reducing the factor to 0.05
+          y: prevPosition.y + dy * 0.05,
         };
       });
 
