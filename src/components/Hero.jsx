@@ -17,26 +17,63 @@ const Node = ({ position }) => {
   );
 };
 
-const Astro = ({ position }) => {
+const Astro = ({ position, nodes, lineRadius }) => {
+  const filteredNodes = nodes.filter((node) => {
+    const dx = node.position.x - position.x;
+    const dy = node.position.y - position.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    return distance <= lineRadius;
+  });
+
   return (
-    <div
-      style={{
-        position: 'absolute',
-        width: '10px',
-        height: '10px',
-        backgroundColor: '#85fffb',
-        borderRadius: '50%',
-        left: position.x,
-        top: position.y,
-      }}
-      className="astro"
-    />
+    <div>
+      <div
+        style={{
+          position: 'absolute',
+          width: '10px',
+          height: '10px',
+          backgroundColor: '#85fffb',
+          borderRadius: '50%',
+          left: position.x,
+          top: position.y,
+        }}
+        className="astro"
+      />
+      <svg
+        style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}
+        width="100%"
+        height="100%"
+      >
+        {filteredNodes.map((node, index) => {
+          const dx = node.position.x - position.x;
+          const dy = node.position.y - position.y;
+          const angle = Math.atan2(dy, dx);
+          const startX = position.x + (10 * Math.cos(angle));
+          const startY = position.y + (10 * Math.sin(angle));
+          const endX = node.position.x;
+          const endY = node.position.y;
+
+          return (
+            <line
+              key={index}
+              x1={startX}
+              y1={startY}
+              x2={endX}
+              y2={endY}
+              stroke="rgba(66, 215, 245, 0.5)"
+              strokeWidth="0.5"
+            />
+          );
+        })}
+      </svg>
+    </div>
   );
 };
 
 const Hero = () => {
   const [nodes, setNodes] = useState([]);
   const [astroPosition, setAstroPosition] = useState({ x: 0, y: 0 });
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     // Creating nodes with random positions for demonstration purposes
@@ -49,11 +86,11 @@ const Hero = () => {
     setNodes(nodesData);
   }, []);
 
-  const handleMouseMove = (event) => {
-    setAstroPosition({ x: event.clientX, y: event.clientY });
-  };
-
   useEffect(() => {
+    const handleMouseMove = (event) => {
+      setCursorPosition({ x: event.clientX, y: event.clientY });
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
@@ -61,16 +98,26 @@ const Hero = () => {
     };
   }, []);
 
-  const findClosestNodes = () => {
-    const lineRadius = 80; // Set the line connecting radius here
-    const sortedNodes = nodes.map((node) => ({
-      ...node,
-      distance: Math.sqrt((astroPosition.x - node.position.x) ** 2 + (astroPosition.y - node.position.y) ** 2),
-    }));
-    sortedNodes.sort((a, b) => a.distance - b.distance);
+  useEffect(() => {
+    let animationFrameId;
 
-    return sortedNodes.filter((node) => node.distance <= lineRadius);
-  };
+    const updateAstroPosition = () => {
+      setAstroPosition((prevPosition) => {
+        const dx = cursorPosition.x - prevPosition.x;
+        const dy = cursorPosition.y - prevPosition.y;
+        return {
+          x: prevPosition.x + dx * 0.1,
+          y: prevPosition.y + dy * 0.1,
+        };
+      });
+
+      animationFrameId = requestAnimationFrame(updateAstroPosition);
+    };
+
+    animationFrameId = requestAnimationFrame(updateAstroPosition);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [cursorPosition]);
 
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: '-1', overflow: 'hidden' }}>
@@ -85,37 +132,7 @@ const Hero = () => {
       </div>
 
       {/* Astro */}
-      <Astro position={astroPosition} />
-
-      {/* Lines */}
-      <svg
-        style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}
-        width="100%"
-        height="100%"
-      >
-        {/* Updated line path calculations */}
-        {findClosestNodes().map((node, index) => {
-          const dx = node.position.x - astroPosition.x;
-          const dy = node.position.y - astroPosition.y;
-          const cx1 = (astroPosition.x + node.position.x) / 2;
-          const cy1 = (astroPosition.y + node.position.y) / 2;
-          const cx2 = (astroPosition.x + node.position.x) / 2;
-          const cy2 = (astroPosition.y + node.position.y) / 2;
-
-          // Create a curved path string using cubic Bezier curve
-          const curvePath = `M${astroPosition.x},${astroPosition.y} C${cx1},${cy1} ${cx2},${cy2} ${node.position.x},${node.position.y}`;
-
-          return (
-            <path
-              key={index}
-              d={curvePath}
-              stroke="rgba(66, 215, 245, 0.5)"
-              fill="transparent"
-              // style={{ strokeWidth: 0.5, transition: 'stroke 0.3s ease' }} // Set the strokeWidth and ease effect
-            />
-          );
-        })}
-      </svg>
+      <Astro position={astroPosition} nodes={nodes} lineRadius={80} />
     </div>
   );
 };
