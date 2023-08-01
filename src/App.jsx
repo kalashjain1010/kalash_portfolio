@@ -7,6 +7,8 @@ import Experience from './components/Experience';
 import Tech from './components/Tech';
 import Contact from './components/Contact';
 import Social from './components/Social';
+import './customScrollbar.css'; // Add this line to import the customScrollbar.css
+
 // import Layout from './Layout';
 
 const App = () => {

@@ -1,0 +1,19 @@
+/* Custom scrollbar styles */
+body {
+    scrollbar-color: #83dcc6 #333333; /* #83dcc6 for thumb, #333333 for track */
+  }
+  
+  body::-webkit-scrollbar {
+    width: 6px;
+    background-color: #333333; /* #333333 for track background */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #83dcc6; /* #83dcc6 for thumb background */
+    border-radius: 3px;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
