@@ -11,7 +11,9 @@ body {
   body::-webkit-scrollbar-thumb {
     background-color: #83dcc6; /* #83dcc6 for thumb background */
     border-radius: 3px;
+    /* animation: glowEffect 1s infinite alternate; Add the animation to create the glow effect  */
   }
+
   
   html {
     scroll-behavior: smooth;

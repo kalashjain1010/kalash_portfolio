@@ -91,8 +91,8 @@ const Navbar = () => {
             <li
               key={Link.id}
               className={`${
-                active === Link.title ? "text-white" : "text-[#a6a2bf]"
-              } hover:text-white text-[20px]
+                active === Link.title ? "text-[#b1ecdc]" : "text-[#a6a2bf]"
+              } hover:text-[#83dcc6] text-[20px]
              font-bold cursor-pointer
              transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-all ...
              `}
@@ -104,48 +104,6 @@ const Navbar = () => {
         </ul>
           </motion.div>
 
-        
-
-        {/* <div className="absolute inset-0 justify-end sm:block hidden mt-20
-          m-4 ">
-
-          <div
-            onClick={() => window.open
-            ("https://github.com/amanjaiman1", "blank")}
-            className=" w-10 h-10 rounded-full
-            flex justify-center items-center cursor-pointer "
-          >
-          <img
-           src={github}
-           alt="github"
-           className="w-8 h-8 object-contain" />
-          </div> &nbsp; &nbsp;
-
-          <div
-            onClick={() => window.open
-            ("https://www.linkedin.com/in/aman-jaiman-b4a36b199/", "blank")}
-            className=" w-10 h-10 rounded-full
-            flex justify-center items-center cursor-pointer "
-          >
-           <img
-            src={linkedin}
-            alt="linkedin"
-            className="w-7 h-7 object-contain "  />
-          </div> &nbsp;&nbsp;
-
-          <div
-            onClick={() => window.open
-            ("https://drive.google.com/file/d/14CtUDvA_KN2trdwElqRim023qM5iBnt7/view?usp=sharing", "blank")}
-            className=" w-10 h-10 rounded-full
-            flex justify-center items-center cursor-pointer "
-          >
-           <img
-            src={cv}
-            alt="linkedin"
-            className="w-7 h-7 object-contain "  />
-          </div>
-
-        </div> */}
 
         <motion.div
         initial={`closed`}
