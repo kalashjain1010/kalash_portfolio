@@ -13,6 +13,7 @@ const ExperienceCard = ({ experience }) => (
    contentStyle={ { background: '#020810f1',
                     color:'#fff',
                     borderRadius: '20px',
+                    borderColor: '#83dcc6',
                   }}
    contentArrowStyle = {{ borderRight: '7px solid #232631'}}
    date= {experience.date}
@@ -56,7 +57,7 @@ const ExperienceCard = ({ experience }) => (
 const Experience = () => {
   return (
     <>
-    <p className="border-[2px]"></p><br />
+    <p className="border-[2px] border-[#83dcc6]"></p><br />
     
     <motion.div variants={ textVariant() }>
     <p className={styles.sectionSubText}>
