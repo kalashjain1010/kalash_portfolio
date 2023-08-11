@@ -23,7 +23,7 @@ import twitter from "./twitter.png"
 import warnimg from "./warning.png"
 import resume from "./resume.png"
 import colab from "./colab.png"
-
+import kanban from "./kanban.png";
 
 // import css from "./tech/css.png";
 // import docker from "./tech/docker.png";
@@ -50,7 +50,9 @@ import HoneyUncle from "./HoneyUncle.png";
 import create from "./create.png";
 import wordcount from "./wordcount.png";
 
+
 export {
+  kanban,
   create,
   wordcount,
   logo,

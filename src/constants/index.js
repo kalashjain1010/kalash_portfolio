@@ -19,7 +19,8 @@ import {
   github,
   colab,
   create,
-  wordcount
+  wordcount,
+  kanban
   // personal,
   // live
 } from "../assets";
@@ -260,6 +261,29 @@ const projects = [
     image: wordcount,
     project_link: "https://regal-profiterole-d32bda.netlify.app/",
     source_code_link: "https://github.com/kalashjain1010/WordCounterUsingReact",
+    minImg: github,
+  },
+  {
+    name: "Kanban board",
+  description:
+    "Created a basic Kanban board using Next.js with task management. Allows adding and removing tasks in To Do column. Expand for more features and functionality.",
+    tags: [
+      {
+        name: "Nextjs",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Tailwind",
+        color: "green-text-gradient",
+      },
+      {
+        name: "js",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: kanban,
+    project_link: "https://kanban-board-neon-ten.vercel.app/",
+    source_code_link: "https://github.com/kalashjain1010/Kanban-board",
     minImg: github,
   },
 
