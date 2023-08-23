@@ -10,7 +10,6 @@ import {
   honeyuncle,
   tech4addiction,
   seo,
-  zerociti,
   Zerociti,
   HoneyUncle,
   threejs,
