@@ -18,7 +18,7 @@ import support from "./support.webp"
 import instagram from "./Instagram_1.png"
 import facebook from "./Facebook_1.png"
 import twitter from "./twitter.png"
-// import personal from "./personal.png"
+// import personal from "./personal.png"pe
 // import live from "./live.png"
 import warnimg from "./warning.png"
 import resume from "./resume.png"
@@ -32,12 +32,12 @@ import kanban from "./kanban.webp";
 // import html from "./tech/html.png";
 // import javascript from "./tech/javascript.png";
 // import mongodb from "./tech/mongodb.png";
-import nodejs from "./tech/nodejs.png";
-import reactjs from "./tech/reactjs.png";
+import nodejs from "./tech/nodejs.webp";
+import reactjs from "./tech/reactjs.webp";
 // import tailwind from "./tech/tailwind.png";
 import threejs from "./tech/threejs.svg";
 import express from "./tech/express.webp"
-import vue from "./tech/vue.png"
+import vue from "./tech/vue.webp"
 
 import honeyuncle from "./company/honeyuncle.png";
 import zerociti from "./company/zerociti.png";
