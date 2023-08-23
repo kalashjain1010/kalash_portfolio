@@ -1,20 +1,20 @@
 import logo from "./boy.gif";
 import backend from "./backend.png";
 import creator from "./creator.png";
-import mobile from "./mobile.png";
+import mobile from "./mobile.webp";
 import web from "./web.png";
-import github from "./github.png";
-import linkedin from "./LinkedIn_1.png"
+import github from "./github.webp";
+import linkedin from "./LinkedIn_1.webp"
 import menu from "./menu.svg";
 import close from "./close.svg";
 // import ravi from "./ravi.jpg";
-import chatgpt from "./chatgpt.png";
+import chatgpt from "./chatgpt.webp";
 // import manoffice from "./manoffice.gif"
 // import officeplus from "./officeplus.gif"
-import standingman from "./standingman.png"
-import studying from "./studying.png"
+import standingman from "./standingman.webp"
+import studying from "./studying.webp"
 import juicyboy from "./juicyboy.gif"
-import support from "./support.png"
+import support from "./support.webp"
 import instagram from "./Instagram_1.png"
 import facebook from "./Facebook_1.png"
 import twitter from "./twitter.png"
@@ -22,8 +22,8 @@ import twitter from "./twitter.png"
 // import live from "./live.png"
 import warnimg from "./warning.png"
 import resume from "./resume.png"
-import colab from "./colab.png"
-import kanban from "./kanban.png";
+import colab from "./colab.webp"
+import kanban from "./kanban.webp";
 
 // import css from "./tech/css.png";
 // import docker from "./tech/docker.png";
@@ -46,8 +46,8 @@ import seo from "./company/seo.png";
 // import cv from "./company/cv.png"
 
 import Zerociti from "./zerociti.png";
-import HoneyUncle from "./HoneyUncle.png";
-import create from "./create.png";
+import HoneyUncle from "./HoneyUncle.webp";
+import create from "./create.webp";
 import wordcount from "./wordcount.png";
 
 
