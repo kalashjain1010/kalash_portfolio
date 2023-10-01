@@ -19,7 +19,8 @@ import {
   colab,
   create,
   wordcount,
-  kanban
+  kanban,
+  shoestore
   // personal,
   // live
 } from "../assets";
@@ -189,6 +190,28 @@ const projects = [
     image: create,
     project_link: "https://cre8-iota.vercel.app/",
     source_code_link: "https://github.com/kalashjain1010/Colab",
+    minImg: github,
+  },
+  {
+    name: "Shoe-Store",
+  description: "Designed and launched a dynamic shoe store app with efficient admin tools, top-notch performance, and a wide product selection, with outstanding user experience",
+    tags: [
+      {
+        name: "Nextjs",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "TailwindCss",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Stapi",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: shoestore,
+    project_link: "https://shoe-store-tan.vercel.app/",
+    source_code_link: "https://github.com/kalashjain1010/Shoe-store",
     minImg: github,
   },
   

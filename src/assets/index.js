@@ -37,9 +37,11 @@ import Zerociti from "./zerociti.webp";
 import HoneyUncle from "./HoneyUncle.webp";
 import create from "./create.webp";
 import wordcount from "./wordcount.webp";
+import shoestore from "./shoestore.png";
 
 export {
   kanban,
+  shoestore,
   create,
   wordcount,
   logo,
