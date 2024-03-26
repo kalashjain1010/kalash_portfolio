@@ -8,10 +8,14 @@ import { fadeIn, fadeInCard, textVariant, textVariant1, slideIn }  from '../util
 
 import { SectionWrapper2 } from '../hoc'
 import { standingman } from '../assets'
+import { redirect } from 'react-router-dom'
 
-const ServiceCard2 = ({ index, title, icon }) => {
+const ServiceCard2 = ({ index, link, title, icon }) => {
+  const redirectTo = () => {
+    window.open(link, "_blank")
+  }
   return (
-    <div className="xs:w-[190px] w-full">
+    <div onClick={redirectTo}  className="xs:w-[190px] w-full cursor-pointer">
       <motion.div 
         variants={fadeIn("up", "spring", 0.5 * index, 1.75)}
         className = "w-full bg-[#131334e3]  p-[1px] rounded-[10%] shadow-cards "
@@ -35,7 +39,7 @@ const ServiceCard2 = ({ index, title, icon }) => {
           font-bold text-center ">{title}</h3>
 
         </div>
-
+         
       </motion.div>
     </div>
   )
@@ -44,26 +48,23 @@ const ServiceCard2 = ({ index, title, icon }) => {
 const Tech = () => {
   return (
     <>
-    <img
-        className=" mr-auto w-[50%] sm:hidden" src={standingman} alt="man-image" />
-    <motion.div
-        className=" flex flex-row justify-center items-center text-center"
-        
-      >
-        
-        <img
-        className=" max-sm:hidden mr-auto w-[20%] h-[30%]" src={standingman} alt="man-image" />
+    <div className='flex items-center justify-center'> 
 
+    <motion.div
+        className=" flex flex-row justify-center items-center text-center">
+        <img
+        className=" max-sm:hidden w-[20%] h-[30%]" src={standingman} alt="man-image" />
       <motion.div
       
       className="mt-20 flex flex-wrap gap-10">
-        {technologies.map((service, index) => (
-          <ServiceCard2 key={service.title} index={index} {...service} />
-        ))}
+        {technologies.map((service, index ) => (
+          <ServiceCard2 key={service.title} index={index} link={service.link} {...service} />
+          ))}
 
       </motion.div>
       
       </motion.div>
+          </div>
       </>
   )
 }
