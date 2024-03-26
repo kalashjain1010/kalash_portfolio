@@ -100,7 +100,7 @@ const About = () => {
       <p className="border-b-2 border-[#70ebc0] "></p>
 
       <motion.div >
-        <div className="mt-20 flex flex-wrap max-sm:hidden gap-10">
+        <div className="mt-20 flex flex-wrap max-sm:hidden gap-10 cursor-default">
           {services.map((service, index) => (
             <ServiceCard key={service.title} index={index} {...service} />
           ))}
