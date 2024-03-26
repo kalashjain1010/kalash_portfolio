@@ -99,7 +99,7 @@ const About = () => {
       <br />
       <p className="border-b-2 border-[#70ebc0] "></p>
 
-      <motion.div whileTap={{ scale: 0, rotateY: -90, borderRadius: "50%" }}>
+      <motion.div >
         <div className="mt-20 flex flex-wrap max-sm:hidden gap-10">
           {services.map((service, index) => (
             <ServiceCard key={service.title} index={index} {...service} />

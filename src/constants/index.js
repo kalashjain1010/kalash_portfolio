@@ -50,7 +50,7 @@ const services = [
     icon: mobile,
   },
   {
-    title: "Java developer",
+    title: "NuxtJs developer",
     icon: backend,
   },
   {
