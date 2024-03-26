@@ -50,7 +50,7 @@ const services = [
     icon: mobile,
   },
   {
-    title: "Java developer",
+    title: "NuxtJs developer",
     icon: backend,
   },
   {
@@ -63,23 +63,28 @@ const technologies = [
   {
     title: "React",
     icon: reactjs,
+    link: "https://reactjs.org/",
   },
   {
     title: "NextJs",
     icon: express,
+    link: "https://nextjs.org/",
   },
   {
     title: "Node",
     icon: nodejs,
+    link: "https://nodejs.org/en",
   },
-
+  
   {
     title: "Three.JS",
     icon: threejs,
+    link: "https://threejs.org/",
   },
   {
-    title: "Firebase",
+    title: "NuxtJs",
     icon: vue,
+    link: "https://nuxtjs.org/",
   },
 ];
 
