@@ -20,7 +20,7 @@ import {
   create,
   wordcount,
   kanban,
-  shoestore
+  shoestore,
   // personal,
   // live
 } from "../assets";
@@ -68,10 +68,10 @@ const technologies = [
     title: "NextJs",
     icon: express,
   },
-    {
-      title: "Node",
-      icon: nodejs,
-    },
+  {
+    title: "Node",
+    icon: nodejs,
+  },
 
   {
     title: "Three.JS",
@@ -83,28 +83,26 @@ const technologies = [
   },
 ];
 
-
 const experiences = [
   {
-    title: "Front-End Developer",
-  company_name: "Colab",
-    icon: colab,
+    title: "Full Stack Developer Intern",
+    company_name: "Continuo",
+    icon: honeyuncle,
     iconBg: "#E6DEDD",
-    date: "May 2023 - July 2023",
-    // date: "Jan 2022 - Jan 2023",
-  points: [
-    "Developed a web application in an international team, focusing on front-end and UI/UX design.",
-    "Created the application using HTML, CSS, JavaScript, and frameworks like NextJs with expertise in UI/UX design principles, responsive web design,and version control systems while showcasing effective teamwork and meeting project deadlines.",
-    "Implementing responsive design and ensuring cross-browser compatibility.",
-    "Delivered an app enabling users to post projects and hire professionals.",
-  ],
+    date: "Dec 2023 - Present",
+    points: [
+      "Developing and maintaining Fintech Product ",
+      "Collaborated with a team to develop a comprehensive fintech product aimed at consolidating various financial services into a unified platform. Utilized Nuxt.js for front-end development, while employing PostgreSQL, Redis, and Node.js for the backend infrastructure",
+      "Maintained platform standards, ensuring cross-browser compatibility and mobile responsiveness.",
+      "Participating in code reviews and providing constructive feedback to other developers.",
+    ],
   },
   {
     title: "Web Developer Intern",
     company_name: "NGTS",
     icon: tech4addiction,
     iconBg: "#FFFF",
-    date: "April 2023 - NOW",
+    date: "Sep 2023 - Dec 2023",
     points: [
       "Developing and maintaining web applications using React.js and other related technologies.",
       "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
@@ -113,30 +111,17 @@ const experiences = [
     ],
   },
   {
-    title: "Reddit Clone",
-    company_name: "Reddit",
-    icon: seo,
+    title: "Front-End Developer",
+    company_name: "Colab",
+    icon: colab,
     iconBg: "#E6DEDD",
-    date: "Dec 2022 - Feb 2023",
-  points: [
-    "Developing and maintaining web applications using Next.js , Chakra-ui & redux.",
-    "creating and managing the data at backend using FireBase.",
-    "Implementing responsive design and ensuring cross-browser compatibility.",
-    
-  ],
-  },
- 
-  {
-    title: "Full stack App",
-    company_name: "Crypto Sensex",
-    icon: honeyuncle,
-    iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
+    date: "May 2023 - July 2023",
+    // date: "Jan 2022 - Jan 2023",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
+      "Developed a web application in an international team, focusing on front-end and UI/UX design.",
+      "Created the application using HTML, CSS, JavaScript, and frameworks like NextJs with expertise in UI/UX design principles, responsive web design,and version control systems while showcasing effective teamwork and meeting project deadlines.",
       "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Delivered an app enabling users to post projects and hire professionals.",
     ],
   },
 ];
@@ -167,12 +152,11 @@ const testimonials = [
   //   image: "https://randomuser.me/api/portraits/women/6.jpg",
   // },
 ];
-
 const projects = [
   {
     name: "Cre8Team",
-  description:
-    "platform connects companies with job seekers, offering job postings and opportunities for relevant job matches with interactive user interface.",
+    description:
+      "platform connects companies with job seekers, offering job postings and opportunities for relevant job matches with interactive user interface.",
     tags: [
       {
         name: "Nextjs",
@@ -194,7 +178,8 @@ const projects = [
   },
   {
     name: "Shoe-Store",
-  description: "Designed and launched a dynamic shoe store app with efficient admin tools, top-notch performance, and a wide product selection, with outstanding user experience",
+    description:
+      "Designed and launched a dynamic shoe store app with efficient admin tools, top-notch performance, and a wide product selection, with outstanding user experience",
     tags: [
       {
         name: "Nextjs",
@@ -214,46 +199,46 @@ const projects = [
     source_code_link: "https://github.com/kalashjain1010/Shoe-store",
     minImg: github,
   },
-  
+
   {
     name: "Speed Types",
-  description:
-    "Developed a web-based typing speed application using React. Created an interactive user interface with features such as time tracking, accuracy calculation..",
-  tags: [
-    {
-      name: "react",
-      color: "blue-text-gradient",
-    },
-    {
-      name: "JSON",
-      color: "green-text-gradient",
-    },
-    {
-      name: "Tailwind css",
-      color: "pink-text-gradient",
-    },
+    description:
+      "Developed a web-based typing speed application using React. Created an interactive user interface with features such as time tracking, accuracy calculation..",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "JSON",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Tailwind css",
+        color: "pink-text-gradient",
+      },
     ],
     image: Zerociti,
-    project_link:"https://speed-type-liart.vercel.app/",
+    project_link: "https://speed-type-liart.vercel.app/",
     source_code_link: "https://github.com/kalashjain1010/Speed-type",
     minImg: github,
   },
   {
     name: "Reddit Clone",
     description:
-    "The main features of a Reddit clone include user-generated content, voting on content, commenting, and subreddits (topic-specific communities).",
-  tags: [
+      "The main features of a Reddit clone include user-generated content, voting on content, commenting, and subreddits (topic-specific communities).",
+    tags: [
       {
         name: "NextJs",
-      color: "blue-text-gradient",
+        color: "blue-text-gradient",
       },
       {
         name: "Chakra-ui",
-      color: "green-text-gradient",
+        color: "green-text-gradient",
       },
       {
         name: "Firebase",
-      color: "pink-text-gradient",
+        color: "pink-text-gradient",
       },
     ],
     image: chatgpt,
@@ -261,11 +246,11 @@ const projects = [
     source_code_link: "https://github.com/kalashjain1010/Redit",
     minImg: github,
   },
-  
+
   {
     name: "Word Counter",
-  description:
-    "This app takes user input in the form of a string and returns the total word count and total charcters.It also has additional features like covert to upperCase and LowerCase",
+    description:
+      "This app takes user input in the form of a string and returns the total word count and total charcters.It also has additional features like covert to upperCase and LowerCase",
     tags: [
       {
         name: "Reactjs",
@@ -287,8 +272,8 @@ const projects = [
   },
   {
     name: "Kanban board",
-  description:
-    "Created a basic Kanban board using Next.js with task management. Allows adding and removing tasks in To Do column. Expand for more features and functionality.",
+    description:
+      "Created a basic Kanban board using Next.js with task management. Allows adding and removing tasks in To Do column. Expand for more features and functionality.",
     tags: [
       {
         name: "Nextjs",
@@ -308,7 +293,6 @@ const projects = [
     source_code_link: "https://github.com/kalashjain1010/Kanban-board",
     minImg: github,
   },
-
 ];
 
 export { services, technologies, experiences, testimonials, projects };
