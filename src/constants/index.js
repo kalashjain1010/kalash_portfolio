@@ -21,6 +21,7 @@ import {
   wordcount,
   kanban,
   shoestore,
+  pazy_logo,
   // personal,
   // live
 } from "../assets";
@@ -90,11 +91,24 @@ const technologies = [
 
 const experiences = [
   {
-    title: "Full Stack Developer Intern",
-    company_name: "Continuo",
-    icon: honeyuncle,
+    title: "Web Developer",
+    company_name: "Pazy",
+    icon: pazy_logo, // Replace with your actual icon variable or import
+    iconBg: "#DDEEFF", // You can change this background color if needed
+    date: "May 2024 - Present",
+    points: [
+      "Built a complete platform from scratch using Nuxt.js, collaborating closely with design and product teams.",
+      "Enabled the platform to serve a growing number of active daily users by ensuring high performance and reliability.",
+      "Actively participated in strategic and architectural decisions across the product lifecycle.",
+      "Contributed significantly to the company's growth, leading to over 20x increase in company valuation since joining.",
+    ],
+  },
+  {
+    title: "Wev Developer Intern",
+    company_name: "Pazy",
+    icon: pazy_logo,
     iconBg: "#E6DEDD",
-    date: "Dec 2023 - Present",
+    date: "Dec 2023 - May 2024",
     points: [
       "Developing and maintaining Fintech Product ",
       "Collaborated with a team to develop a comprehensive fintech product aimed at consolidating various financial services into a unified platform. Utilized Nuxt.js for front-end development, while employing PostgreSQL, Redis, and Node.js for the backend infrastructure",

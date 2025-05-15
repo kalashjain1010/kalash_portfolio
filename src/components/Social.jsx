@@ -26,12 +26,12 @@ const Social = () => {
     <a  href='https://www.linkedin.com/in/kalash-jain-1b99731a0/' target=' ' ><img className="h-[40px]" src={linkedin} alt="" /></a>
     <a  href='https://twitter.com/kalash__jain_' target=' ' ><img className="h-[45px]" src={twitter} alt="" /></a>
     <a  href='https://www.instagram.com/kalash.png/' target=' ' ><img className="h-[40px]" src={instagram} alt="" /></a>
-    <a  href='https://drive.google.com/file/d/1h2EziBzRTSMdABzwdXjebtOPPyRS2RLk/view?usp=sharing' target=' '><img className="h-[40px]" src={resume} alt="" /></a>
+    <a  href='https://drive.google.com/file/d/10IJF_K7mT9JzIh-ph7znIZ7sP9lAqJWN/view?usp=sharing' target=' '><img className="h-[40px]" src={resume} alt="" /></a>
 
     </motion.div>
       <br />
       <footer className="text-center max-sm:mt-20">
-        Chinta na kr sb theek ho jaega 🙂
+        Lets build something amazing 🙂
       </footer>
 
 

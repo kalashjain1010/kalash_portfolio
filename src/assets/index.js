@@ -29,6 +29,7 @@ import express from "./tech/express.webp";
 import vue from "./tech/vue.webp";
 
 import honeyuncle from "./company/honeyuncle.webp";
+import pazy_logo from "./company/pazy.svg";
 
 import tech4addiction from "./company/tech4addiction.webp";
 import seo from "./company/seo.webp";
@@ -75,4 +76,5 @@ export {
   twitter,
   resume,
   warnimg,
+  pazy_logo,
 };
