@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion, warning } from "framer-motion";
+import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
-
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
@@ -9,57 +8,37 @@ import { support, warnimg } from "../assets";
 
 const Contact = () => {
   const formRef = useRef();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const validate = (values) => {
-    let errors = {};
-
-    if (!values.name.trim()) {
-      errors.name = "Name is required";
-    }
-
-    if (!values.email.trim()) {
-      errors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-      errors.email = "Email address is invalid";
-    }
-
-    if (!values.message.trim()) {
-      errors.message = "Message is required";
-    }
-
-    return errors;
+    const next = {};
+    if (!values.name.trim()) next.name = "Name is required";
+    if (!values.email.trim()) next.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(values.email)) next.email = "Invalid email";
+    if (!values.message.trim()) next.message = "Message is required";
+    return next;
   };
 
   const handleChange = (e) => {
-    const { target } = e;
-    const { name, value } = target;
-
-    setForm({
-      ...form,
-      [name]: value,
-    });
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    setErrors(validate(form));
+    const nextErrors = validate(form);
+    setErrors(nextErrors);
     setIsSubmitting(true);
   };
 
   const sendEmail = () => {
     emailjs
       .send(
-        'service_lamq8af',
-        'template_5o9d5wm',
+        "service_lamq8af",
+        "template_5o9d5wm",
         {
           from_name: form.name,
           to_name: "Kalash Jain",
@@ -67,129 +46,119 @@ const Contact = () => {
           to_email: "kalashjain54@gmail.com",
           message: form.message,
         },
-        'rww7YYWd1MUNjSXqv' // Replace with your user ID
+        "rww7YYWd1MUNjSXqv"
       )
       .then(
         () => {
           setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
-
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
+          setForm({ name: "", email: "", message: "" });
+          setErrors({});
+          alert("Thanks! I'll get back to you soon.");
         },
-        (error) => {
+        (err) => {
           setLoading(false);
-          console.error(error);
-
-          alert("Ahh, something went wrong. Please try again.");
+          console.error(err);
+          alert("Something went wrong. Please try again.");
         }
       );
   };
 
-  // Submit the form if there are no errors
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
       setLoading(true);
       sendEmail();
       setIsSubmitting(false);
     }
-  }, [errors]);
-
-  let customMess = "Refresh Again";
-
+  }, [errors, isSubmitting]);
 
   return (
-    <div className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden h-80vh`}>
-    <motion.div
-      variants={slideIn("left", "tween", 0.2, 1)}
-      className='flex-[0.75] max-sm:mt-28 bg-[#83dcc6] form p-8 rounded-2xl z-30'
-      style={{ backgroundColor: "rgba(131, 220, 198, 0.6)" }}
-    >
-         <p className={`${styles.sectionSubText} text-white `} >Get in touch</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
-
+    <div className="flex flex-col xl:flex-row gap-12 xl:gap-16 items-start min-w-0 w-full">
+      <motion.div
+        variants={slideIn("left", "tween", 0.2, 0.6)}
+        className="flex-1 w-full max-w-xl rounded-2xl bg-bg-card border border-bg-border p-8 shadow-card"
+      >
+        <p className={styles.sectionLabel}>Get in touch</p>
+        <h3 className={styles.sectionHeadText}>Contact</h3>
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-8 '
+          className="mt-8 flex flex-col gap-6"
         >
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Name</span>
+          <label className="flex flex-col gap-1.5">
+            <span className="font-body text-text-primary font-medium text-sm">
+              Your name
+            </span>
             <input
-              type='text'
-              name='name'
+              type="text"
+              name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="What's your good name?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              placeholder="What's your name?"
+              className="w-full px-4 py-3 rounded-xl bg-bg-elevated border border-bg-border text-text-primary placeholder:text-text-muted font-body text-sm outline-none focus:border-accent/50 transition-colors"
             />
-            {errors.name &&
-             <div className="flex gap-2 ml-2">
-              <img className="w-5 h-5 mt-2" src={warnimg} alt="warning" />
-              <p className={styles.errorText}>{errors.name}</p>
-             </div>
-            }
+            {errors.name && (
+              <div className="flex items-center gap-2">
+                <img src={warnimg} alt="" className="w-4 h-4" />
+                <p className={styles.errorText}>{errors.name}</p>
+              </div>
+            )}
           </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your email</span>
+          <label className="flex flex-col gap-1.5">
+            <span className="font-body text-text-primary font-medium text-sm">
+              Your email
+            </span>
             <input
-              type='email'
-              name='email'
+              type="email"
+              name="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="What's your web address?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              placeholder="you@example.com"
+              className="w-full px-4 py-3 rounded-xl bg-bg-elevated border border-bg-border text-text-primary placeholder:text-text-muted font-body text-sm outline-none focus:border-accent/50 transition-colors"
             />
-            {errors.email &&
-             <div className="flex gap-2 ml-2">
-             <img className="w-5 h-5 mt-2" src={warnimg} alt="warning" />
-             <p className={styles.errorText}>{errors.email}</p>
-            </div>
-            }
+            {errors.email && (
+              <div className="flex items-center gap-2">
+                <img src={warnimg} alt="" className="w-4 h-4" />
+                <p className={styles.errorText}>{errors.email}</p>
+              </div>
+            )}
           </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Message</span>
+          <label className="flex flex-col gap-1.5">
+            <span className="font-body text-text-primary font-medium text-sm">
+              Message
+            </span>
             <textarea
-              rows={7}
-              name='message'
+              rows={5}
+              name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder='What you want to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              placeholder="What would you like to say?"
+              className="w-full px-4 py-3 rounded-xl bg-bg-elevated border border-bg-border text-text-primary placeholder:text-text-muted font-body text-sm outline-none focus:border-accent/50 transition-colors resize-none"
             />
-            {errors.message
-             && 
-             <div className="flex gap-2 ml-2">
-              <img className="w-5 h-5 mt-2" src={warnimg} alt="warning" />
-              <p className={styles.errorText}>{errors.message}</p>
-             </div>
-            }
+            {errors.message && (
+              <div className="flex items-center gap-2">
+                <img src={warnimg} alt="" className="w-4 h-4" />
+                <p className={styles.errorText}>{errors.message}</p>
+              </div>
+            )}
           </label>
-
           <button
-            type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-secondary'
-            disabled={isSubmitting || Object.keys(errors).length > 0}
+            type="submit"
+            disabled={loading}
+            className="mt-2 min-h-[44px] px-6 py-3 rounded-xl bg-accent text-bg font-semibold text-sm hover:bg-accent/90 disabled:opacity-60 disabled:cursor-not-allowed transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           >
-            {loading ? "Sending..." : "Send"}
-            {errors.message
-             && 
-             <div className="flex gap-2 ml-2">
-              <p className={styles.errorText}>{"Refresh Again Please"}</p>
-             </div>
-            }
+            {loading ? "Sending…" : "Send message"}
           </button>
         </form>
       </motion.div>
-
       <motion.div
-        variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px]'
+        variants={slideIn("right", "tween", 0.2, 0.6)}
+        className="xl:flex-1 flex justify-center min-w-0"
       >
-        <img className=" max-sm:h-[500px]"  src={support} alt="" />
+        <img
+          src={support}
+          alt=""
+          className="max-h-[420px] max-w-full w-auto object-contain"
+        />
       </motion.div>
     </div>
   );

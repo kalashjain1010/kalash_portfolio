@@ -1,30 +1,55 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx}"],
+  content: ["./index.html", "./src/**/*.{js,jsx}"],
   mode: "jit",
   theme: {
     extend: {
+      fontFamily: {
+        display: ["Syne", "sans-serif"],
+        body: ["DM Sans", "sans-serif"],
+      },
       colors: {
-        primary: "",
-        secondary: "#aaa6c3",
-        tertiary: "#151030",
-        "black-100": "#100d25",
-        "black-200": "#090325",
-        "white-100": "#f3f3f3",
+        bg: {
+          DEFAULT: "#0c0c10",
+          elevated: "#12121a",
+          card: "#16161f",
+          border: "rgba(255,255,255,0.06)",
+        },
+        accent: {
+          DEFAULT: "#00d4aa",
+          muted: "rgba(0, 212, 170, 0.15)",
+          glow: "rgba(0, 212, 170, 0.25)",
+        },
+        text: {
+          primary: "#f4f4f5",
+          secondary: "#a1a1aa",
+          muted: "#71717a",
+        },
+        secondary: "#a1a1aa",
+        tertiary: "#16161f",
       },
       boxShadow: {
-        card: "0px 35px 120px -15px #211e35",
+        card: "0 4px 24px -1px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.04)",
+        "card-hover": "0 24px 48px -12px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,212,170,0.1)",
+        glow: "0 0 40px -10px rgba(0, 212, 170, 0.3)",
       },
       screens: {
-        xs: "450px",
-      },
-      backgroundImage: {
-        "hero-pattern": "url('')",
+        xs: "480px",
       },
       animation: {
-        'spin': 'spin 10s linear infinite',
-        'bounce' : 'bounce 2.2s linear infinite',
-      }
+        "fade-in": "fadeIn 0.6s ease-out forwards",
+        "slide-up": "slideUp 0.6s ease-out forwards",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        slideUp: {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+      },
     },
   },
   plugins: [],

@@ -1,19 +1,22 @@
 const styles = {
-    paddingX: "sm:px-16 px-6",
-    paddingY: "sm:py-16 py-6",
-    padding: "sm:px-16 px-6 sm:py-16 py-10",
-  
-    heroHeadText:
-      "font-black text-white lg:text-[50px] w-full  sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2",
-    heroSubText:
-      "text-[#dfd9ff] font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[40px]",
-  
-    sectionHeadText:
-      "text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]",
-    sectionSubText:
-      "sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider",
-    errorText:
-      "sm:text-[13px] text-[] mt-2 text-[14px] text-secondary uppercase tracking-wider",
-  };
-  
-  export { styles };
+  paddingX: "sm:px-12 md:px-16 lg:px-20 px-6",
+  paddingY: "sm:py-20 md:py-24 py-14",
+  padding: "sm:px-12 md:px-16 lg:px-20 px-6 sm:py-20 md:py-24 py-14",
+
+  heroHeadText:
+    "font-display font-bold text-text-primary tracking-tight lg:text-[4rem] md:text-[3.5rem] sm:text-[3rem] text-[2.25rem] lg:leading-[1.1]",
+  heroSubText:
+    "font-body text-text-secondary font-medium lg:text-xl md:text-lg text-base mt-4 max-w-xl",
+
+  sectionLabel:
+    "font-body text-accent text-sm font-medium uppercase tracking-[0.2em]",
+  sectionHeadText:
+    "font-display font-bold text-text-primary lg:text-[3rem] md:text-[2.5rem] sm:text-[2rem] text-[1.75rem] tracking-tight mt-2",
+  sectionSubText:
+    "font-body text-text-secondary text-sm md:text-base max-w-2xl mt-3",
+
+  card: "rounded-2xl bg-bg-card border border-bg-border shadow-card transition-all duration-300",
+  errorText: "font-body text-sm text-amber-400/90 mt-1",
+};
+
+export { styles };

@@ -1,21 +1,14 @@
-/* Custom scrollbar styles */
 body {
-    scrollbar-color: #83dcc6 #333333; /* #83dcc6 for thumb, #333333 for track */
-  }
-  
-  body::-webkit-scrollbar {
-    width: 6px;
-    background-color: #333333; /* #333333 for track background */
-  }
-  
-  body::-webkit-scrollbar-thumb {
-    background-color: #83dcc6; /* #83dcc6 for thumb background */
-    border-radius: 3px;
-    /* animation: glowEffect 1s infinite alternate; Add the animation to create the glow effect  */
-  }
-
-  
-  html {
-    scroll-behavior: smooth;
-  }
-  
+  scrollbar-color: #00d4aa #16161f;
+}
+body::-webkit-scrollbar {
+  width: 8px;
+  background: #0c0c10;
+}
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00d4aa 0%, rgba(0, 212, 170, 0.6) 100%);
+  border-radius: 4px;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: #00d4aa;
+}

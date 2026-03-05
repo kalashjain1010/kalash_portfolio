@@ -1,122 +1,47 @@
 import React from "react";
-import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-
 import { styles } from "../styles";
 import { services } from "../constants";
-import { fadeIn, fadeInCard, textVariant, textVariant1 } from "../utils/motion";
-
+import { fadeIn, textVariant, textVariant1 } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 
-const ServiceCard = ({ index, title, icon }) => {
-  return (
-    <Tilt className="xs:w-[250px] w-full card">
-      <motion.div
-        variants={fadeInCard("left", "bounce", 0.5 * index, 0.75)}
-        className="w-full bg-[#020810a1]  p-[1px] rounded-[20px] shadow-card "
-      >
-        <div
-          options={{
-            max: 45,
-            scale: 1,
-            speed: 450,
-          }}
-          className="face face1 backdrop:blur-sm rounded-[20px]
-           py-5 px-12 min-h-[280px]  flex justify-evenly
-           items-center flex-col"
-        >
-          <img src={icon} alt={title} className="w-16 h-16 object-contain" />
-          <h3
-            className="text-white text-[20px] 
-          font-bold text-center "
-          >
-            {title}
-          </h3>
-        </div>
-      </motion.div>
-    </Tilt>
-  );
-};
-
-const ServiceCard2 = ({ index, title, icon }) => {
-  return (
-    <Tilt className="w-[250px] justify-center ml-10">
-      <motion.div className="w-full bg-[#020810a1]  p-[1px] rounded-[20px] shadow-card ">
-        <div
-          options={{
-            max: 45,
-            scale: 1,
-            speed: 450,
-          }}
-          className="backdrop:blur-sm rounded-[20px]
-           py-5 px-12 min-h-[280px]  flex justify-evenly
-           items-center flex-col"
-        >
-          <img src={icon} alt={title} className="w-16 h-16 object-contain" />
-          <h3
-            className="text-white text-[20px] 
-          font-bold text-center "
-          >
-            {title}
-          </h3>
-        </div>
-      </motion.div>
-    </Tilt>
-  );
-};
+const ServiceCard = ({ index, title, icon }) => (
+  <motion.div
+    variants={fadeIn("up", "spring", index * 0.08, 0.6)}
+    className="group rounded-2xl bg-bg-card border border-bg-border p-6 sm:p-8 transition-all duration-300 hover:border-accent/20 hover:shadow-card-hover min-w-0"
+  >
+    <div className="w-14 h-14 rounded-xl bg-accent-muted flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
+      <img src={icon} alt={title} className="w-8 h-8 object-contain" />
+    </div>
+    <h3 className="font-display font-semibold text-text-primary text-lg">
+      {title}
+    </h3>
+  </motion.div>
+);
 
 const About = () => {
-  const [scroll, setScroll] = useState(false);
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      setScroll(window.scrollY > 500);
-    });
-  }, [5000]);
-
   return (
     <>
-      <motion.div variants={textVariant()}>
-        <p
-          className={`  ${
-            scroll ? "text-[#000000] letter" : "text-[#fdfdfd]"
-          } ${styles.sectionSubText} mt-10  `}
-        >
-          Introduction
-        </p>
-      </motion.div>
-      <motion.div variants={textVariant1()}>
-        <h2 className={styles.sectionHeadText}>Overview</h2>
-      </motion.div>
-
-      <motion.p variants={fadeIn("", "", 0.1, 1)} className=" text-[13px]">
-        I'm a skilled software developer with experience in JavaScript and
-        TypeScript, and expertise in frameworks like React,NextJs, Node.js, and
-        Three.js. I'm a quick learner and collaborate closely with clients to
-        create efficient, scalable, and user-friendly solutions that solve
-        real-world problems. Let's work together to bring your ideas to life!
+      <motion.p variants={textVariant()} className={styles.sectionLabel}>
+        Introduction
       </motion.p>
-      <br />
-      <p className="border-b-2 border-[#70ebc0] "></p>
-
-      <motion.div >
-        <div className="mt-20 flex flex-wrap max-sm:hidden gap-10 cursor-default">
-          {services.map((service, index) => (
-            <ServiceCard key={service.title} index={index} {...service} />
-          ))}
-        </div>
-      </motion.div>
-
-      {/* for mobile only  */}
-      
-
-      <motion.div>
-        <div className="mt-20 flex-wrap flex sm:hidden gap-10">
-          {services.map((service, index) => (
-            <ServiceCard2 key={service.title} index={index} {...service} />
-          ))}
-        </div>
-      </motion.div>
+      <motion.h2 variants={textVariant1()} className={styles.sectionHeadText}>
+        Overview
+      </motion.h2>
+      <motion.p
+        variants={fadeIn("", "", 0.1, 0.6)}
+        className="font-body text-text-secondary mt-4 max-w-2xl leading-relaxed"
+      >
+        I'm a software developer focused on JavaScript and TypeScript, with
+        experience in React, Next.js, Nuxt.js, Node.js, and Three.js. I work
+        closely with teams to build scalable, user-friendly products that
+        solve real problems—from idea to production.
+      </motion.p>
+      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 min-w-0">
+        {services.map((service, index) => (
+          <ServiceCard key={service.title} index={index} {...service} />
+        ))}
+      </div>
     </>
   );
 };

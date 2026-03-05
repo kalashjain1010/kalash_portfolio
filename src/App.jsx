@@ -14,7 +14,8 @@ import './customScrollbar.css'; // Add this line to import the customScrollbar.c
 const App = () => {
   return (
     <BrowserRouter basename="/">
-      <Layout>
+      <div className="min-w-0 w-full overflow-x-hidden">
+        <Layout>
         <Content/>
         <About/>
         <Experience/>
@@ -22,7 +23,8 @@ const App = () => {
         <Works/>
         <Contact/>
         <Social/>
-      </Layout>
+        </Layout>
+      </div>
     </BrowserRouter>
   );
 };
