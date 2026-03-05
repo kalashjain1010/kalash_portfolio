@@ -41,7 +41,14 @@ const About = () => {
         I focus on the full journey: understanding the problem, designing the
         solution, building it with the right stack, and shipping with the team.
       </motion.p>
-      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 min-w-0">
+      <motion.p
+        variants={fadeIn("", "", 0.12, 0.6)}
+        className="font-body text-text-muted text-sm mt-3 max-w-xl leading-relaxed"
+      >
+        I’ve shipped production apps with React, Next.js, Nuxt.js, and Node—from
+        fintech platforms to e‑commerce and internal tools.
+      </motion.p>
+      <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 min-w-0">
         {journeySteps.map((item, index) => (
           <JourneyCard key={item.step} index={index} {...item} />
         ))}

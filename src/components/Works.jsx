@@ -78,7 +78,8 @@ const Works = () => {
         >
           A selection of projects that show how I approach building products:
           from front-end and full-stack apps to real-world problems and
-          deadlines.
+          deadlines. Each one pushed a different skill—state management, APIs,
+          design systems, or shipping under constraints.
         </motion.p>
         <img
           src={studying}
