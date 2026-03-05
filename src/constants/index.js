@@ -27,35 +27,43 @@ import {
 } from "../assets";
 
 export const navLinks = [
-  {
-    id: "about",
-    title: "About",
-  },
-  {
-    id: "work",
-    title: "Work",
-  },
-  {
-    id: "contact",
-    title: "Contact",
-  },
+  { id: "about", title: "About" },
+  { id: "work", title: "Experience" },
+  { id: "projects", title: "Projects" },
+  { id: "contact", title: "Contact" },
 ];
 
 const services = [
+  { title: "Web Developer", icon: web },
+  { title: "React Developer", icon: mobile },
+  { title: "NuxtJs developer", icon: backend },
+  { title: "NextJs Developer", icon: creator },
+];
+
+/* Journey: how I work — narrative steps, not tech list */
+const journeySteps = [
   {
-    title: "Web Developer",
+    step: "01",
+    title: "Discover",
+    description: "Understand the problem and who it's for.",
     icon: web,
   },
   {
-    title: "React Developer",
+    step: "02",
+    title: "Design",
+    description: "Shape architecture, flows, and interfaces.",
     icon: mobile,
   },
   {
-    title: "NuxtJs developer",
+    step: "03",
+    title: "Develop",
+    description: "Build it with the right tools and practices.",
     icon: backend,
   },
   {
-    title: "NextJs Developer",
+    step: "04",
+    title: "Deploy",
+    description: "Ship, learn, and iterate with the team.",
     icon: creator,
   },
 ];
@@ -104,7 +112,7 @@ const experiences = [
     ],
   },
   {
-    title: "Wev Developer Intern",
+    title: "Web Developer Intern",
     company_name: "Pazy",
     icon: pazy_logo,
     iconBg: "#E6DEDD",
@@ -314,4 +322,4 @@ const projects = [
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export { services, journeySteps, technologies, experiences, testimonials, projects };

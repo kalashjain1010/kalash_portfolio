@@ -1,138 +1,129 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from "react";
 
-const Node = ({ position }) => {
+const NODE_COUNT = 120;
+const LINE_RADIUS = 70;
+const LERP = 0.06;
+
+const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+
+const Node = ({ position, bounds }) => {
+  const x = bounds ? clamp(position.x, 0, bounds.w) : position.x;
+  const y = bounds ? clamp(position.y, 0, bounds.h) : position.y;
   return (
     <div
-      style={{
-        position: 'absolute',
-        width: '3px',
-        height: '3px',
-        backgroundColor: 'rgba(66, 215, 245, 0.5)',
-        borderRadius: '50%',
-        left: position.x,
-        top: position.y,
-      }}
-      className="node"
+      className="absolute w-[2px] h-[2px] rounded-full bg-accent/40"
+      style={{ left: x, top: y }}
     />
   );
 };
 
-const Astro = ({ position, nodes, lineRadius }) => {
-  const filteredNodes = nodes.filter((node) => {
-    const dx = node.position.x - position.x;
-    const dy = node.position.y - position.y;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-    return distance <= lineRadius;
-  });
+const Astro = ({ position, nodes, bounds }) => {
+  const safePos = useMemo(() => {
+    if (!bounds) return position;
+    return {
+      x: clamp(position.x, 0, bounds.w),
+      y: clamp(position.y, 0, bounds.h),
+    };
+  }, [position, bounds]);
+
+  const nearby = useMemo(() => {
+    return nodes.filter((node) => {
+      const dx = node.x - safePos.x;
+      const dy = node.y - safePos.y;
+      return dx * dx + dy * dy <= LINE_RADIUS * LINE_RADIUS;
+    });
+  }, [safePos, nodes]);
 
   return (
-    <div>
+    <>
       <div
+        className="absolute w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_20px_rgba(0,212,170,0.5)]"
         style={{
-          position: 'absolute',
-          width: '10px',
-          height: '10px',
-          backgroundColor: '#85fffb',
-          borderRadius: '50%',
-          left: position.x,
-          top: position.y,
+          left: safePos.x,
+          top: safePos.y,
+          transform: "translate(-50%,-50%)",
         }}
-        className="astro"
       />
       <svg
-        style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}
-        width="100%"
-        height="100%"
+        className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden"
+        style={{ zIndex: 0 }}
+        preserveAspectRatio="xMidYMid slice"
       >
-        {filteredNodes.map((node, index) => {
-          const dx = node.position.x - position.x;
-          const dy = node.position.y - position.y;
-          const angle = Math.atan2(dy, dx);
-          const startX = position.x + (10 * Math.cos(angle));
-          const startY = position.y + (10 * Math.sin(angle));
-          const endX = node.position.x;
-          const endY = node.position.y;
-
-          return (
-            <line
-              key={index}
-              x1={startX}
-              y1={startY}
-              x2={endX}
-              y2={endY}
-              stroke="rgba(66, 215, 245, 0.5)"
-              strokeWidth="1"
-            />
-          );
-        })}
+        {nearby.map((node, i) => (
+          <line
+            key={i}
+            x1={safePos.x}
+            y1={safePos.y}
+            x2={clamp(node.x, 0, bounds?.w ?? node.x)}
+            y2={clamp(node.y, 0, bounds?.h ?? node.y)}
+            stroke="rgba(0, 212, 170, 0.2)"
+            strokeWidth="1"
+          />
+        ))}
       </svg>
-    </div>
+    </>
   );
 };
 
 const Hero = () => {
   const [nodes, setNodes] = useState([]);
-  const [astroPosition, setAstroPosition] = useState({ x: 0, y: 0 });
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [cursor, setCursor] = useState({ x: 0, y: 0 });
+  const [astro, setAstro] = useState({ x: 0, y: 0 });
+  const [bounds, setBounds] = useState(null);
 
   useEffect(() => {
-    // Creating nodes with random positions for demonstration purposes
-    const nodesData = Array.from({ length: 300 }, (_, i) => ({
-      position: {
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-      },
-    }));
-    setNodes(nodesData);
+    if (typeof window === "undefined") return;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    setBounds({ w, h });
+    setNodes(
+      Array.from({ length: NODE_COUNT }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+      }))
+    );
   }, []);
 
   useEffect(() => {
-    const handleMouseMove = (event) => {
-      setCursorPosition({ x: event.clientX, y: event.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
+    const onResize = () =>
+      setBounds({ w: window.innerWidth, h: window.innerHeight });
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   useEffect(() => {
-    let animationFrameId;
+    const onMove = (e) => setCursor({ x: e.clientX, y: e.clientY });
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
+  }, []);
 
-    const updateAstroPosition = () => {
-      setAstroPosition((prevPosition) => {
-        const dx = cursorPosition.x - prevPosition.x;
-        const dy = cursorPosition.y - prevPosition.y;
-        return {
-          x: prevPosition.x + dx * 0.05, // Increase the delay by reducing the factor to 0.05
-          y: prevPosition.y + dy * 0.05,
-        };
-      });
-
-      animationFrameId = requestAnimationFrame(updateAstroPosition);
+  useEffect(() => {
+    let raf;
+    const update = () => {
+      setAstro((prev) => ({
+        x: prev.x + (cursor.x - prev.x) * LERP,
+        y: prev.y + (cursor.y - prev.y) * LERP,
+      }));
+      raf = requestAnimationFrame(update);
     };
-
-    animationFrameId = requestAnimationFrame(updateAstroPosition);
-
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [cursorPosition]);
+    raf = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(raf);
+  }, [cursor]);
 
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: '-1', overflow: 'hidden' }}>
-      {/* Background */}
-      <div style={{ backgroundColor: '#333333', position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }} />
-
-      {/* Nodes */}
-      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}>
-        {nodes.map((node, index) => (
-          <Node key={index} position={node.position} />
+    <div
+      className="fixed inset-0 -z-10 overflow-hidden w-full h-full"
+      style={{ left: 0, right: 0, top: 0, bottom: 0 }}
+      aria-hidden
+    >
+      <div className="absolute inset-0 bg-bg" />
+      <div className="absolute inset-0 bg-gradient-to-b from-bg via-transparent to-bg opacity-60" />
+      <div className="absolute inset-0 overflow-hidden">
+        {nodes.map((node, i) => (
+          <Node key={i} position={node} bounds={bounds} />
         ))}
       </div>
-
-      {/* Astro */}
-      <Astro position={astroPosition} nodes={nodes} lineRadius={80} />
+      <Astro position={astro} nodes={nodes} bounds={bounds} />
     </div>
   );
 };

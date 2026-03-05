@@ -1,72 +1,47 @@
-import React from 'react'
-import { animate, backInOut, motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import React from "react";
+import { motion } from "framer-motion";
+import { styles } from "../styles";
+import { technologies } from "../constants";
+import { fadeIn, textVariant1 } from "../utils/motion";
+import { SectionWrapper2 } from "../hoc";
+import { standingman } from "../assets";
 
-import { styles } from '../styles'
-import { services, technologies } from '../constants'
-import { fadeIn, fadeInCard, textVariant, textVariant1, slideIn }  from '../utils/motion';
-
-import { SectionWrapper2 } from '../hoc'
-import { standingman } from '../assets'
-import { redirect } from 'react-router-dom'
-
-const ServiceCard2 = ({ index, link, title, icon }) => {
-  const redirectTo = () => {
-    window.open(link, "_blank")
-  }
-  return (
-    <div onClick={redirectTo}  className="xs:w-[190px] w-full cursor-pointer">
-      <motion.div 
-        variants={fadeIn("up", "spring", 0.5 * index, 1.75)}
-        className = "w-full bg-[#131334e3]  p-[1px] rounded-[10%] shadow-cards "
-
-      >
-
-        <div
-          options = {{
-            max: 45,
-            scale: 1,
-            speed: 450
-          }}
-          className=" rounded-[100px]
-           py-5 px-12 min-h-[230px]  flex justify-evenly
-           items-center flex-col"
-        >
-
-          <img src={icon} alt={title}
-            className="w-16 h-16 object-contain" />
-          <h3 className="text-white text-[20px] 
-          font-bold text-center ">{title}</h3>
-
-        </div>
-         
-      </motion.div>
+const TechCard = ({ index, title, icon, link }) => (
+  <motion.a
+    href={link}
+    target="_blank"
+    rel="noopener noreferrer"
+    variants={fadeIn("up", "spring", index * 0.06, 0.5)}
+    className="flex flex-col items-center gap-4 p-5 rounded-xl bg-bg-card/80 border border-bg-border transition-colors duration-200 hover:border-white/[0.08] group min-w-0 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+  >
+    <div className="w-16 h-16 rounded-xl bg-bg-elevated flex items-center justify-center group-hover:bg-accent-muted transition-colors">
+      <img src={icon} alt={title} className="w-9 h-9 object-contain" />
     </div>
-  )
-}
+    <span className="font-body font-medium text-text-primary text-sm">
+      {title}
+    </span>
+  </motion.a>
+);
 
 const Tech = () => {
   return (
     <>
-    <div className='flex items-center justify-center'> 
-
-    <motion.div
-        className=" flex flex-row justify-center items-center text-center">
-        <img
-        className=" max-sm:hidden w-[20%] h-[30%]" src={standingman} alt="man-image" />
-      <motion.div
-      
-      className="mt-20 flex flex-wrap gap-10">
-        {technologies.map((service, index ) => (
-          <ServiceCard2 key={service.title} index={index} link={service.link} {...service} />
+      <div className="flex flex-col md:flex-row md:items-center md:gap-16 gap-8 min-w-0 w-full">
+        <motion.div variants={textVariant1()} className="flex-shrink-0 min-w-0">
+          <img
+            src={standingman}
+            alt=""
+            className="w-40 md:w-48 max-w-full h-auto opacity-90 hidden sm:block"
+          />
+        </motion.div>
+        <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 min-w-0">
+          {technologies.map((tech, index) => (
+            <TechCard key={tech.title} index={index} {...tech} />
           ))}
+        </div>
+      </div>
+    </>
+  );
+};
 
-      </motion.div>
-      
-      </motion.div>
-          </div>
-      </>
-  )
-}
-
-export default SectionWrapper2(Tech, "tech")
+export default SectionWrapper2(Tech, "tech");

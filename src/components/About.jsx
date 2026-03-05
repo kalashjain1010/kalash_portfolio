@@ -1,122 +1,58 @@
 import React from "react";
-import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-
 import { styles } from "../styles";
-import { services } from "../constants";
-import { fadeIn, fadeInCard, textVariant, textVariant1 } from "../utils/motion";
-
+import { journeySteps } from "../constants";
+import { fadeIn, textVariant, textVariant1 } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 
-const ServiceCard = ({ index, title, icon }) => {
-  return (
-    <Tilt className="xs:w-[250px] w-full card">
-      <motion.div
-        variants={fadeInCard("left", "bounce", 0.5 * index, 0.75)}
-        className="w-full bg-[#020810a1]  p-[1px] rounded-[20px] shadow-card "
-      >
-        <div
-          options={{
-            max: 45,
-            scale: 1,
-            speed: 450,
-          }}
-          className="face face1 backdrop:blur-sm rounded-[20px]
-           py-5 px-12 min-h-[280px]  flex justify-evenly
-           items-center flex-col"
-        >
-          <img src={icon} alt={title} className="w-16 h-16 object-contain" />
-          <h3
-            className="text-white text-[20px] 
-          font-bold text-center "
-          >
-            {title}
-          </h3>
-        </div>
-      </motion.div>
-    </Tilt>
-  );
-};
-
-const ServiceCard2 = ({ index, title, icon }) => {
-  return (
-    <Tilt className="w-[250px] justify-center ml-10">
-      <motion.div className="w-full bg-[#020810a1]  p-[1px] rounded-[20px] shadow-card ">
-        <div
-          options={{
-            max: 45,
-            scale: 1,
-            speed: 450,
-          }}
-          className="backdrop:blur-sm rounded-[20px]
-           py-5 px-12 min-h-[280px]  flex justify-evenly
-           items-center flex-col"
-        >
-          <img src={icon} alt={title} className="w-16 h-16 object-contain" />
-          <h3
-            className="text-white text-[20px] 
-          font-bold text-center "
-          >
-            {title}
-          </h3>
-        </div>
-      </motion.div>
-    </Tilt>
-  );
-};
+const JourneyCard = ({ index, step, title, description, icon }) => (
+  <motion.div
+    variants={fadeIn("up", "spring", index * 0.1, 0.6)}
+    className="group relative rounded-xl bg-bg-card/80 border border-bg-border p-6 sm:p-7 transition-colors duration-200 hover:border-white/[0.08] min-w-0"
+  >
+    <span className="font-display text-accent/50 text-sm font-bold tracking-wider">
+      {step}
+    </span>
+    <div className="mt-3 w-12 h-12 rounded-xl bg-accent-muted flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+      <img src={icon} alt="" className="w-6 h-6 object-contain" />
+    </div>
+    <h3 className="font-display font-semibold text-text-primary text-lg mt-4">
+      {title}
+    </h3>
+    <p className="font-body text-text-secondary text-sm mt-2 leading-relaxed">
+      {description}
+    </p>
+  </motion.div>
+);
 
 const About = () => {
-  const [scroll, setScroll] = useState(false);
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      setScroll(window.scrollY > 500);
-    });
-  }, [5000]);
-
   return (
     <>
-      <motion.div variants={textVariant()}>
-        <p
-          className={`  ${
-            scroll ? "text-[#000000] letter" : "text-[#fdfdfd]"
-          } ${styles.sectionSubText} mt-10  `}
-        >
-          Introduction
-        </p>
-      </motion.div>
-      <motion.div variants={textVariant1()}>
-        <h2 className={styles.sectionHeadText}>Overview</h2>
-      </motion.div>
-
-      <motion.p variants={fadeIn("", "", 0.1, 1)} className=" text-[13px]">
-        I'm a skilled software developer with experience in JavaScript and
-        TypeScript, and expertise in frameworks like React,NextJs, Node.js, and
-        Three.js. I'm a quick learner and collaborate closely with clients to
-        create efficient, scalable, and user-friendly solutions that solve
-        real-world problems. Let's work together to bring your ideas to life!
+      <motion.p variants={textVariant()} className={styles.sectionLabel}>
+        How I work
       </motion.p>
-      <br />
-      <p className="border-b-2 border-[#70ebc0] "></p>
-
-      <motion.div >
-        <div className="mt-20 flex flex-wrap max-sm:hidden gap-10 cursor-default">
-          {services.map((service, index) => (
-            <ServiceCard key={service.title} index={index} {...service} />
-          ))}
-        </div>
-      </motion.div>
-
-      {/* for mobile only  */}
-      
-
-      <motion.div>
-        <div className="mt-20 flex-wrap flex sm:hidden gap-10">
-          {services.map((service, index) => (
-            <ServiceCard2 key={service.title} index={index} {...service} />
-          ))}
-        </div>
-      </motion.div>
+      <motion.h2 variants={textVariant1()} className={styles.sectionHeadText}>
+        From idea to production
+      </motion.h2>
+      <motion.p
+        variants={fadeIn("", "", 0.1, 0.6)}
+        className="font-body text-text-secondary mt-4 max-w-xl leading-relaxed"
+      >
+        I focus on the full journey: understanding the problem, designing the
+        solution, building it with the right stack, and shipping with the team.
+      </motion.p>
+      <motion.p
+        variants={fadeIn("", "", 0.12, 0.6)}
+        className="font-body text-text-muted text-sm mt-3 max-w-xl leading-relaxed"
+      >
+        I’ve shipped production apps with React, Next.js, Nuxt.js, and Node—from
+        fintech platforms to e‑commerce and internal tools.
+      </motion.p>
+      <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 min-w-0">
+        {journeySteps.map((item, index) => (
+          <JourneyCard key={item.step} index={index} {...item} />
+        ))}
+      </div>
     </>
   );
 };
