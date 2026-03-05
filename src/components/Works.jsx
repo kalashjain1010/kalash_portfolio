@@ -17,7 +17,7 @@ const ProjectCard = ({
 }) => (
   <motion.article
     variants={fadeIn("up", "spring", index * 0.08, 0.5)}
-    className="group rounded-2xl bg-bg-card border border-bg-border overflow-hidden transition-all duration-300 hover:border-accent/20 hover:shadow-card-hover min-w-0"
+    className="group rounded-xl bg-bg-card/80 border border-bg-border overflow-hidden transition-colors duration-200 hover:border-white/[0.08] min-w-0"
   >
     <a
       href={project_link}
@@ -28,7 +28,7 @@ const ProjectCard = ({
       <img
         src={image}
         alt={name}
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <div className="absolute bottom-3 left-3 right-3 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">

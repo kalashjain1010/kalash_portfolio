@@ -12,7 +12,7 @@ const TechCard = ({ index, title, icon, link }) => (
     target="_blank"
     rel="noopener noreferrer"
     variants={fadeIn("up", "spring", index * 0.06, 0.5)}
-    className="flex flex-col items-center gap-4 p-6 rounded-2xl bg-bg-card border border-bg-border transition-all duration-300 hover:border-accent/25 hover:shadow-card-hover hover:-translate-y-0.5 group min-w-0 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+    className="flex flex-col items-center gap-4 p-5 rounded-xl bg-bg-card/80 border border-bg-border transition-colors duration-200 hover:border-white/[0.08] group min-w-0 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
   >
     <div className="w-16 h-16 rounded-xl bg-bg-elevated flex items-center justify-center group-hover:bg-accent-muted transition-colors">
       <img src={icon} alt={title} className="w-9 h-9 object-contain" />

@@ -51,7 +51,7 @@ const Social = () => {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center min-w-[44px] min-h-[44px] w-12 h-12 rounded-xl bg-bg-card border border-bg-border text-text-secondary hover:text-accent hover:border-accent/30 hover:bg-accent-muted transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            className="flex items-center justify-center min-w-[44px] min-h-[44px] w-12 h-12 rounded-xl bg-bg-card/80 border border-bg-border text-text-secondary hover:text-accent hover:border-white/[0.12] hover:bg-accent-muted transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             aria-label={label}
           >
             <img src={icon} alt="" className="w-6 h-6 object-contain" />

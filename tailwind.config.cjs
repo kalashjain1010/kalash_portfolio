@@ -10,23 +10,23 @@ module.exports = {
       },
       colors: {
         bg: {
-          DEFAULT: "#0c0c10",
-          elevated: "#12121a",
-          card: "#16161f",
+          DEFAULT: "#0a0a0c",
+          elevated: "#111113",
+          card: "#161618",
           border: "rgba(255,255,255,0.06)",
         },
         accent: {
           DEFAULT: "#00d4aa",
-          muted: "rgba(0, 212, 170, 0.15)",
-          glow: "rgba(0, 212, 170, 0.25)",
+          muted: "rgba(0, 212, 170, 0.12)",
+          glow: "rgba(0, 212, 170, 0.2)",
         },
         text: {
-          primary: "#f4f4f5",
+          primary: "#fafafa",
           secondary: "#a1a1aa",
           muted: "#71717a",
         },
         secondary: "#a1a1aa",
-        tertiary: "#16161f",
+        tertiary: "#161618",
       },
       boxShadow: {
         card: "0 4px 24px -1px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.04)",

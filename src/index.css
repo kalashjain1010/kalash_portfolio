@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --bg: #0c0c10;
-  --bg-elevated: #12121a;
-  --bg-card: #16161f;
+  --bg: #0a0a0c;
+  --bg-elevated: #111113;
+  --bg-card: #161618;
   --accent: #00d4aa;
-  --accent-muted: rgba(0, 212, 170, 0.15);
-  --text-primary: #f4f4f5;
+  --accent-muted: rgba(0, 212, 170, 0.12);
+  --text-primary: #fafafa;
   --text-secondary: #a1a1aa;
   --text-muted: #71717a;
   --border: rgba(255, 255, 255, 0.06);
@@ -19,29 +19,28 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "DM Sans", sans-serif;
-  scroll-behavior: smooth;
   color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  scroll-padding-top: 5rem;
 }
 
 body {
   overflow-x: hidden;
-  min-height: 100%;
+  min-height: 100vh;
   width: 100%;
   max-width: 100vw;
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 212, 170, 0.06), transparent 50%),
+    radial-gradient(ellipse 70% 40% at 50% -10%, rgba(0, 212, 170, 0.04), transparent 50%),
     var(--bg);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Prevent any child from causing horizontal scroll */
 #root {
   overflow-x: hidden;
   min-width: 0;
@@ -49,10 +48,15 @@ body {
   max-width: 100vw;
 }
 
+/* Anchor targets: account for fixed navbar */
+[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 .hash-span {
-  margin-top: -100px;
-  padding-bottom: 100px;
   display: block;
+  margin-top: -5.5rem;
+  padding-top: 5.5rem;
 }
 
 /* Tag gradients for project tags */
@@ -81,61 +85,21 @@ body {
   background-clip: text;
 }
 
-/* Animated border for project cards */
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 90deg;
-  inherits: true;
-}
-:root {
-  --d: 3000ms;
-  --c1: rgba(0, 212, 170, 0.8);
-  --c2: rgba(0, 212, 170, 0.08);
-}
-.card-border {
-  border: 1px solid transparent;
-  background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
-    conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) border-box;
-  animation: borderRotate var(--d) linear infinite;
-}
-@keyframes borderRotate {
-  to {
-    --angle: 420deg;
-  }
-}
-
-/* Selection */
 ::selection {
   background: var(--accent-muted);
   color: var(--accent);
 }
 
-/* Focus visible for a11y */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-/* Vertical timeline: prevent horizontal overflow */
-.vertical-timeline-wrapper {
-  max-width: 100%;
-  overflow-x: hidden;
-  min-width: 0;
+/* Horizontal experience strip: hide scrollbar */
+.experience-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-.vertical-timeline-wrapper .vertical-timeline {
-  max-width: 100%;
-}
-.vertical-timeline-wrapper .vertical-timeline::before {
-  left: 18px !important;
-}
-.vertical-timeline-wrapper .vertical-timeline-element-content {
-  max-width: calc(100% - 4rem) !important;
-}
-.vertical-timeline-wrapper .vertical-timeline-element-icon {
-  left: 0 !important;
-}
-@media (min-width: 1170px) {
-  .vertical-timeline-wrapper .vertical-timeline-element-content {
-    max-width: calc(50% - 4rem) !important;
-  }
+.experience-scroll::-webkit-scrollbar {
+  display: none;
 }

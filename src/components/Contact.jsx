@@ -75,7 +75,7 @@ const Contact = () => {
     <div className="flex flex-col xl:flex-row gap-12 xl:gap-16 items-start min-w-0 w-full">
       <motion.div
         variants={slideIn("left", "tween", 0.2, 0.6)}
-        className="flex-1 w-full max-w-xl rounded-2xl bg-bg-card border border-bg-border p-8 shadow-card"
+        className="flex-1 w-full max-w-xl rounded-xl bg-bg-card/80 border border-bg-border p-8"
       >
         <p className={styles.sectionLabel}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact</h3>

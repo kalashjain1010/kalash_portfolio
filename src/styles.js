@@ -1,21 +1,21 @@
 const styles = {
-  paddingX: "sm:px-12 md:px-16 lg:px-20 px-6",
-  paddingY: "sm:py-20 md:py-24 py-14",
-  padding: "sm:px-12 md:px-16 lg:px-20 px-6 sm:py-20 md:py-24 py-14",
+  paddingX: "px-5 sm:px-8 md:px-10 lg:px-12",
+  paddingY: "py-16 sm:py-20 md:py-28",
+  padding: "px-5 sm:px-8 md:px-10 lg:px-12 py-16 sm:py-20 md:py-28",
 
   heroHeadText:
-    "font-display font-bold text-text-primary tracking-tight lg:text-[4rem] md:text-[3.5rem] sm:text-[3rem] text-[2.25rem] lg:leading-[1.1]",
+    "font-display font-bold text-text-primary tracking-tight text-[2.5rem] sm:text-[3.25rem] md:text-[3.75rem] lg:text-[4rem] leading-[1.15]",
   heroSubText:
-    "font-body text-text-secondary font-medium lg:text-xl md:text-lg text-base mt-4 max-w-xl",
+    "font-body text-text-secondary text-base sm:text-lg md:text-xl mt-5 max-w-lg leading-relaxed",
 
   sectionLabel:
-    "font-body text-accent text-sm font-medium uppercase tracking-[0.2em]",
+    "font-body text-accent text-xs font-medium uppercase tracking-[0.25em]",
   sectionHeadText:
-    "font-display font-bold text-text-primary lg:text-[3rem] md:text-[2.5rem] sm:text-[2rem] text-[1.75rem] tracking-tight mt-2",
+    "font-display font-bold text-text-primary text-2xl sm:text-3xl md:text-4xl tracking-tight",
   sectionSubText:
-    "font-body text-text-secondary text-sm md:text-base max-w-2xl mt-3",
+    "font-body text-text-secondary text-sm sm:text-base max-w-xl mt-3 leading-relaxed",
 
-  card: "rounded-2xl bg-bg-card border border-bg-border shadow-card transition-all duration-300",
+  card: "rounded-xl bg-bg-card/80 border border-bg-border transition-colors duration-200",
   errorText: "font-body text-sm text-amber-400/90 mt-1",
 };
 

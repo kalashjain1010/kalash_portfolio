@@ -34,20 +34,36 @@ export const navLinks = [
 ];
 
 const services = [
+  { title: "Web Developer", icon: web },
+  { title: "React Developer", icon: mobile },
+  { title: "NuxtJs developer", icon: backend },
+  { title: "NextJs Developer", icon: creator },
+];
+
+/* Journey: how I work — narrative steps, not tech list */
+const journeySteps = [
   {
-    title: "Web Developer",
+    step: "01",
+    title: "Discover",
+    description: "Understand the problem and who it's for.",
     icon: web,
   },
   {
-    title: "React Developer",
+    step: "02",
+    title: "Design",
+    description: "Shape architecture, flows, and interfaces.",
     icon: mobile,
   },
   {
-    title: "NuxtJs developer",
+    step: "03",
+    title: "Develop",
+    description: "Build it with the right tools and practices.",
     icon: backend,
   },
   {
-    title: "NextJs Developer",
+    step: "04",
+    title: "Deploy",
+    description: "Ship, learn, and iterate with the team.",
     icon: creator,
   },
 ];
@@ -306,4 +322,4 @@ const projects = [
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export { services, journeySteps, technologies, experiences, testimonials, projects };
