@@ -182,29 +182,6 @@ const testimonials = [
 ];
 const projects = [
   {
-    name: "Who Am I?",
-    description:
-      "A live comedy quiz game — 50 rounds of cryptic clues about famous personalities. Built for game nights with friends. Features clue-by-clue reveals, Wikipedia photo fetch, confetti, and explanation of every hint.",
-    tags: [
-      {
-        name: "React",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "Vite",
-        color: "green-text-gradient",
-      },
-      {
-        name: "Canvas API",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: whoami,
-    project_link: "https://who-am-i-one-eta.vercel.app/",
-    source_code_link: "https://github.com/kalashjain1010/who_am_i",
-    minImg: github,
-  },
-  {
     name: "Cre8Team",
     description:
       "platform connects companies with job seekers, offering job postings and opportunities for relevant job matches with interactive user interface.",
@@ -342,6 +319,29 @@ const projects = [
     image: kanban,
     project_link: "https://kanban-board-neon-ten.vercel.app/",
     source_code_link: "https://github.com/kalashjain1010/Kanban-board",
+    minImg: github,
+  },
+  {
+    name: "Who Am I?",
+    description:
+      "A live comedy quiz game — 50 rounds of cryptic clues about famous personalities. Built for game nights with friends. Features clue-by-clue reveals, Wikipedia photo fetch, confetti, and explanation of every hint.",
+    tags: [
+      {
+        name: "React",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Vite",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Canvas API",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: whoami,
+    project_link: "https://who-am-i-one-eta.vercel.app/",
+    source_code_link: "https://github.com/kalashjain1010/who_am_i",
     minImg: github,
   },
 ];
