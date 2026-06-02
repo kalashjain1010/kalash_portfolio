@@ -39,6 +39,7 @@ import HoneyUncle from "./HoneyUncle.webp";
 import create from "./create.webp";
 import wordcount from "./wordcount.webp";
 import shoestore from "./shoestore.png";
+import whoami from "./whoami.webp";
 
 export {
   kanban,
@@ -77,4 +78,5 @@ export {
   resume,
   warnimg,
   pazy_logo,
+  whoami,
 };
