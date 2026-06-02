@@ -200,7 +200,7 @@ const projects = [
       },
     ],
     image: whoami,
-    project_link: "https://who-am-i-kalash.vercel.app/",
+    project_link: "https://who-am-i-one-eta.vercel.app/",
     source_code_link: "https://github.com/kalashjain1010/who_am_i",
     minImg: github,
   },
