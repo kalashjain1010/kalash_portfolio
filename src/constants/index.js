@@ -23,6 +23,7 @@ import {
   shoestore,
   pazy_logo,
   whoami,
+  sargam,
   // personal,
   // live
 } from "../assets";
@@ -181,6 +182,29 @@ const testimonials = [
   // },
 ];
 const projects = [
+  {
+    name: "Sargam",
+    description:
+      "A 30-day guitar theory course you play on a real neck: tuner, movable scale boxes, Hindi film songs as ear tests, and a mic coach. Acoustic guitar samples, not a synth stack.",
+    tags: [
+      {
+        name: "React",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Vite",
+        color: "green-text-gradient",
+      },
+      {
+        name: "TypeScript",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: sargam,
+    project_link: "https://sargam-theta.vercel.app",
+    source_code_link: "https://github.com/kalashjain1010/sargam",
+    minImg: github,
+  },
   {
     name: "Cre8Team",
     description:
