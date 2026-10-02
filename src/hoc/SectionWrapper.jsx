@@ -11,11 +11,9 @@ const SectionWrapper = (Component, idName) =>
         whileInView="show"
         viewport={{ once: true, amount: 0.08 }}
         transition={{ staggerChildren: 0.06 }}
-        className={`${styles.padding} max-w-5xl mx-auto relative z-0 min-w-0 w-full`}
+        id={idName}
+        className={`${styles.padding} max-w-6xl mx-auto relative z-0 min-w-0 w-full`}
       >
-        <span className="hash-span" id={idName} aria-hidden>
-          &nbsp;
-        </span>
         <Component />
       </motion.section>
     );

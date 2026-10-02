@@ -95,6 +95,22 @@ body {
   outline-offset: 2px;
 }
 
+.typed-cursor {
+  color: var(--accent);
+  font-weight: 200;
+}
+
+input:focus,
+textarea:focus {
+  border-color: rgba(0, 212, 170, 0.45) !important;
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+.surface {
+  background: linear-gradient(180deg, rgba(22, 22, 24, 0.92), rgba(17, 17, 19, 0.88));
+  border: 1px solid var(--border);
+}
+
 /* Horizontal experience strip: hide scrollbar */
 .experience-scroll {
   scrollbar-width: none;

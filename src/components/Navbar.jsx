@@ -11,9 +11,30 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 32);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const ids = navLinks.map((item) => item.id);
+    const els = ids.map((id) => document.getElementById(id)).filter(Boolean);
+    if (els.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const match = navLinks.find((item) => item.id === entry.target.id);
+            if (match) setActive(match.title);
+          }
+        });
+      },
+      { root: null, rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+    );
+
+    els.forEach((el) => observer.observe(el));
+    return () => els.forEach((el) => observer.unobserve(el));
   }, []);
 
   return (
@@ -21,9 +42,9 @@ const Navbar = () => {
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className={`${styles.paddingX} fixed top-0 left-0 right-0 z-50 flex items-center py-4 transition-all duration-300 min-w-0 max-w-[100vw] ${
+      className={`${styles.paddingX} fixed top-0 left-0 right-0 z-50 flex items-center py-3.5 transition-all duration-300 min-w-0 max-w-[100vw] ${
         scrolled
-          ? "bg-bg/80 backdrop-blur-xl border-b border-bg-border"
+          ? "bg-bg/90 backdrop-blur-2xl border-b border-white/[0.06] shadow-[0_10px_40px_-24px_rgba(0,0,0,0.8)]"
           : "bg-transparent"
       }`}
     >
@@ -39,19 +60,19 @@ const Navbar = () => {
           <img
             src={logo}
             alt="Kalash"
-            className="w-9 h-9 rounded-full object-cover ring-2 ring-bg-border group-hover:ring-accent/50 transition-all"
+            className="w-9 h-9 rounded-full object-cover ring-1 ring-white/10 group-hover:ring-accent/50 transition-all"
           />
           <span className="font-display font-semibold text-text-primary text-lg hidden sm:block">
             Kalash
           </span>
         </Link>
 
-        <ul className="hidden md:flex items-center gap-1">
+        <ul className="hidden md:flex items-center gap-0.5">
           {navLinks.map((item) => (
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
-                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   active === item.title
                     ? "text-accent"
                     : "text-text-secondary hover:text-text-primary"
@@ -62,7 +83,7 @@ const Navbar = () => {
                 {active === item.title && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-0 bg-accent-muted rounded-lg -z-10"
+                    className="absolute inset-0 bg-accent-muted rounded-full -z-10"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
                   />
                 )}
@@ -70,20 +91,20 @@ const Navbar = () => {
             </li>
           ))}
           <li>
-<a
-            href="#contact"
-            className="ml-2 min-h-[44px] inline-flex items-center px-4 py-2.5 rounded-xl bg-accent text-bg font-semibold text-sm hover:bg-accent/90 hover:shadow-glow transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-            onClick={() => setActive("Contact")}
-          >
-            Get in touch
-          </a>
+            <a
+              href="#contact"
+              className="ml-3 min-h-[40px] inline-flex items-center px-4 py-2 rounded-full bg-accent text-bg font-semibold text-sm hover:bg-accent/90 hover:shadow-glow transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              onClick={() => setActive("Contact")}
+            >
+              Get in touch
+            </a>
           </li>
         </ul>
 
         <div className="md:hidden flex items-center gap-2">
           <a
             href="#contact"
-            className="px-3 py-2 rounded-lg bg-accent/20 text-accent text-sm font-medium"
+            className="px-3 py-2 rounded-full bg-accent/15 text-accent text-sm font-medium"
           >
             Contact
           </a>
@@ -104,7 +125,7 @@ const Navbar = () => {
           opacity: toggle ? 1 : 0,
           pointerEvents: toggle ? "auto" : "none",
         }}
-        className="fixed inset-0 top-[72px] md:hidden bg-bg/95 backdrop-blur-xl z-40"
+        className="fixed inset-0 top-[68px] md:hidden bg-bg/90 backdrop-blur-xl z-40"
         onClick={() => setToggle(false)}
       />
       <motion.div
@@ -113,7 +134,7 @@ const Navbar = () => {
           x: toggle ? 0 : "100%",
         }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-        className="fixed top-[72px] right-0 bottom-0 w-[min(320px,85vw)] md:hidden z-50 bg-bg-elevated border-l border-bg-border p-6 shadow-2xl"
+        className="fixed top-[68px] right-0 bottom-0 w-[min(320px,85vw)] md:hidden z-50 bg-bg-elevated border-l border-bg-border p-6 shadow-2xl"
       >
         <ul className="flex flex-col gap-1">
           {navLinks.map((item) => (

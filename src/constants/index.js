@@ -36,10 +36,10 @@ export const navLinks = [
 ];
 
 const services = [
-  { title: "Web Developer", icon: web },
+  { title: "Full Stack Developer", icon: web },
   { title: "React Developer", icon: mobile },
-  { title: "NuxtJs developer", icon: backend },
-  { title: "NextJs Developer", icon: creator },
+  { title: "Nuxt Developer", icon: backend },
+  { title: "Next.js Developer", icon: creator },
 ];
 
 /* Journey: how I work — narrative steps, not tech list */
@@ -59,13 +59,13 @@ const journeySteps = [
   {
     step: "03",
     title: "Develop",
-    description: "Build it with the right tools and practices.",
+    description: "Build frontend and backend with the right tools.",
     icon: backend,
   },
   {
     step: "04",
     title: "Deploy",
-    description: "Ship, learn, and iterate with the team.",
+    description: "Ship, learn, and iterate.",
     icon: creator,
   },
 ];
@@ -77,7 +77,7 @@ const technologies = [
     link: "https://reactjs.org/",
   },
   {
-    title: "NextJs",
+    title: "Next.js",
     icon: express,
     link: "https://nextjs.org/",
   },
@@ -86,71 +86,86 @@ const technologies = [
     icon: nodejs,
     link: "https://nodejs.org/en",
   },
-  
   {
-    title: "Three.JS",
+    title: "Nuxt",
+    icon: vue,
+    link: "https://nuxt.com/",
+  },
+  {
+    title: "Three.js",
     icon: threejs,
     link: "https://threejs.org/",
   },
   {
-    title: "NuxtJs",
-    icon: vue,
-    link: "https://nuxtjs.org/",
+    title: "PostgreSQL",
+    link: "https://www.postgresql.org/",
+  },
+  {
+    title: "Redis",
+    link: "https://redis.io/",
+  },
+  {
+    title: "TypeScript",
+    link: "https://www.typescriptlang.org/",
   },
 ];
 
 const experiences = [
   {
-    title: "Web Developer",
+    title: "Full Stack Developer",
     company_name: "Pazy",
-    icon: pazy_logo, // Replace with your actual icon variable or import
-    iconBg: "#DDEEFF", // You can change this background color if needed
-    date: "May 2024 - Present",
+    icon: pazy_logo,
+    iconBg: "#DDEEFF",
+    date: "May 2024 — Present",
+    type: "Full-time",
+    stack: ["Nuxt", "Node", "Postgres", "Redis"],
     points: [
-      "Built a complete platform from scratch using Nuxt.js, collaborating closely with design and product teams.",
-      "Enabled the platform to serve a growing number of active daily users by ensuring high performance and reliability.",
-      "Actively participated in strategic and architectural decisions across the product lifecycle.",
-      "Contributed significantly to the company's growth, leading to over 20x increase in company valuation since joining.",
+      "Built the product end to end with Nuxt.js, Node.js, PostgreSQL, and Redis — frontend and backend.",
+      "Worked with design and product on architecture, performance, and reliability as usage grew.",
+      "Took part in technical and product decisions across the lifecycle.",
+      "Helped the platform scale with the company — over 20x valuation growth since joining.",
     ],
   },
   {
-    title: "Web Developer Intern",
+    title: "Full Stack Developer Intern",
     company_name: "Pazy",
     icon: pazy_logo,
     iconBg: "#E6DEDD",
-    date: "Dec 2023 - May 2024",
+    date: "Dec 2023 — May 2024",
+    type: "Internship",
+    stack: ["Nuxt", "Node", "Postgres", "Redis"],
     points: [
-      "Developing and maintaining Fintech Product ",
-      "Collaborated with a team to develop a comprehensive fintech product aimed at consolidating various financial services into a unified platform. Utilized Nuxt.js for front-end development, while employing PostgreSQL, Redis, and Node.js for the backend infrastructure",
-      "Maintained platform standards, ensuring cross-browser compatibility and mobile responsiveness.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Developed and maintained a fintech product with a small team.",
+      "Built the frontend in Nuxt.js, with Node.js, PostgreSQL, and Redis on the backend.",
+      "Kept the product working across browsers and on mobile.",
+      "Took part in code reviews and gave feedback to other developers.",
     ],
   },
   {
-    title: "Web Developer Intern",
+    title: "Full Stack Developer Intern",
     company_name: "NGTS",
     icon: tech4addiction,
     iconBg: "#FFFF",
-    date: "Sep 2023 - Dec 2023",
+    date: "Sep 2023 — Dec 2023",
+    type: "Internship",
+    stack: ["React", "Node"],
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Built and maintained React apps, including the APIs they used.",
+      "Worked on cross-browser compatibility and mobile responsiveness.",
+      "Participated in code reviews and gave feedback to other developers.",
     ],
   },
   {
-    title: "Front-End Developer",
+    title: "Full Stack Developer",
     company_name: "Colab",
     icon: colab,
     iconBg: "#E6DEDD",
-    date: "May 2023 - July 2023",
-    // date: "Jan 2022 - Jan 2023",
+    date: "May 2023 — July 2023",
+    stack: ["Next.js", "JavaScript"],
     points: [
-      "Developed a web application in an international team, focusing on front-end and UI/UX design.",
-      "Created the application using HTML, CSS, JavaScript, and frameworks like NextJs with expertise in UI/UX design principles, responsive web design,and version control systems while showcasing effective teamwork and meeting project deadlines.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Delivered an app enabling users to post projects and hire professionals.",
+      "Built Cre8Team with an international team — companies post work, people apply.",
+      "Owned the UI and the application flows in Next.js.",
+      "Shipped the product to production. The app is still live.",
     ],
   },
 ];
@@ -185,7 +200,7 @@ const projects = [
   {
     name: "Sargam",
     description:
-      "A 30-day guitar theory course you play on a real neck: tuner, movable scale boxes, Hindi film songs as ear tests, and a mic coach. Acoustic guitar samples, not a synth stack.",
+      "A 30-day guitar theory course: tuner, movable scale boxes, Hindi film songs as ear tests, and a mic coach. Built with React, TypeScript, and acoustic guitar samples.",
     tags: [
       {
         name: "React",
@@ -201,6 +216,7 @@ const projects = [
       },
     ],
     image: sargam,
+    imageFit: "object-top",
     project_link: "https://sargam-theta.vercel.app",
     source_code_link: "https://github.com/kalashjain1010/sargam",
     minImg: github,
@@ -208,14 +224,14 @@ const projects = [
   {
     name: "Cre8Team",
     description:
-      "platform connects companies with job seekers, offering job postings and opportunities for relevant job matches with interactive user interface.",
+      "A hiring platform where companies post work and people apply. Built with an international team using Next.js and Firebase.",
     tags: [
       {
-        name: "Nextjs",
+        name: "Next.js",
         color: "blue-text-gradient",
       },
       {
-        name: "TailwindCss",
+        name: "Tailwind",
         color: "green-text-gradient",
       },
       {
@@ -231,18 +247,18 @@ const projects = [
   {
     name: "Shoe-Store",
     description:
-      "Designed and launched a dynamic shoe store app with efficient admin tools, top-notch performance, and a wide product selection, with outstanding user experience",
+      "An e-commerce shoe store with catalog, orders, and an admin dashboard. Next.js and Strapi.",
     tags: [
       {
-        name: "Nextjs",
+        name: "Next.js",
         color: "blue-text-gradient",
       },
       {
-        name: "TailwindCss",
+        name: "Tailwind",
         color: "green-text-gradient",
       },
       {
-        name: "Stapi",
+        name: "Strapi",
         color: "pink-text-gradient",
       },
     ],
@@ -255,18 +271,18 @@ const projects = [
   {
     name: "Speed Types",
     description:
-      "Developed a web-based typing speed application using React. Created an interactive user interface with features such as time tracking, accuracy calculation..",
+      "A typing speed game with a timer and accuracy tracking. Built with React and Vite.",
     tags: [
       {
-        name: "react",
+        name: "React",
         color: "blue-text-gradient",
       },
       {
-        name: "JSON",
+        name: "Vite",
         color: "green-text-gradient",
       },
       {
-        name: "Tailwind css",
+        name: "Tailwind",
         color: "pink-text-gradient",
       },
     ],
@@ -278,14 +294,14 @@ const projects = [
   {
     name: "Reddit Clone",
     description:
-      "The main features of a Reddit clone include user-generated content, voting on content, commenting, and subreddits (topic-specific communities).",
+      "A Reddit clone with posts, votes, comments, and communities. Next.js, Chakra UI, and Firebase.",
     tags: [
       {
-        name: "NextJs",
+        name: "Next.js",
         color: "blue-text-gradient",
       },
       {
-        name: "Chakra-ui",
+        name: "Chakra UI",
         color: "green-text-gradient",
       },
       {
@@ -302,19 +318,15 @@ const projects = [
   {
     name: "Word Counter",
     description:
-      "This app takes user input in the form of a string and returns the total word count and total charcters.It also has additional features like covert to upperCase and LowerCase",
+      "A React utility that counts words and characters, with case conversion.",
     tags: [
       {
-        name: "Reactjs",
+        name: "React",
         color: "blue-text-gradient",
       },
       {
         name: "Bootstrap",
         color: "green-text-gradient",
-      },
-      {
-        name: "js",
-        color: "pink-text-gradient",
       },
     ],
     image: wordcount,
@@ -325,19 +337,15 @@ const projects = [
   {
     name: "Kanban board",
     description:
-      "Created a basic Kanban board using Next.js with task management. Allows adding and removing tasks in To Do column. Expand for more features and functionality.",
+      "A Kanban board to add, move, and delete tasks. Next.js and Tailwind.",
     tags: [
       {
-        name: "Nextjs",
+        name: "Next.js",
         color: "blue-text-gradient",
       },
       {
         name: "Tailwind",
         color: "green-text-gradient",
-      },
-      {
-        name: "js",
-        color: "pink-text-gradient",
       },
     ],
     image: kanban,
