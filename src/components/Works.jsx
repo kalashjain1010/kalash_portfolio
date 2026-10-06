@@ -15,19 +15,12 @@ const ProjectCard = ({
   source_code_link,
   project_link,
   imageFit,
-  featured,
 }) => (
   <motion.article
     variants={fadeIn("up", "spring", index * 0.08, 0.5)}
-    className={`group relative overflow-hidden border border-white/[0.07] bg-bg-card/40 hover:border-accent/30 transition-colors duration-500 min-w-0 ${
-      featured ? "sm:col-span-2 lg:col-span-2" : ""
-    }`}
+    className="group relative overflow-hidden border border-white/[0.07] bg-bg-card/40 hover:border-accent/30 transition-colors duration-500 min-w-0"
   >
-    <div
-      className={`relative overflow-hidden ${
-        featured ? "h-64 sm:h-80 md:h-[22rem]" : "h-52"
-      }`}
-    >
+    <div className="relative overflow-hidden h-52">
       <a
         href={project_link}
         target="_blank"
@@ -52,18 +45,9 @@ const ProjectCard = ({
       >
         <img src={minImg || github} alt="" className="w-4 h-4" />
       </a>
-      {featured ? (
-        <span className="absolute top-4 left-4 text-[10px] uppercase tracking-[0.22em] font-semibold text-bg bg-accent px-2.5 py-1">
-          Featured
-        </span>
-      ) : null}
     </div>
-    <div className={`p-5 sm:p-6 ${featured ? "sm:p-8" : ""}`}>
-      <h3
-        className={`font-display font-semibold text-text-primary break-words ${
-          featured ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"
-        }`}
-      >
+    <div className="p-5 sm:p-6">
+      <h3 className="font-display font-semibold text-text-primary text-lg sm:text-xl break-words">
         <a
           href={project_link}
           target="_blank"
@@ -73,11 +57,7 @@ const ProjectCard = ({
           {name}
         </a>
       </h3>
-      <p
-        className={`font-body text-text-secondary text-sm mt-2 leading-relaxed break-words ${
-          featured ? "max-w-2xl line-clamp-3" : "line-clamp-2"
-        }`}
-      >
+      <p className="font-body text-text-secondary text-sm mt-2 leading-relaxed break-words line-clamp-2">
         {description}
       </p>
       <div className="mt-4 flex flex-wrap gap-2">
@@ -95,8 +75,6 @@ const ProjectCard = ({
 );
 
 const Works = () => {
-  const [featured, ...rest] = projects;
-
   return (
     <>
       <motion.div variants={textVariant()}>
@@ -115,11 +93,8 @@ const Works = () => {
       </motion.p>
 
       <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 min-w-0">
-        {featured ? (
-          <ProjectCard key={featured.name} index={0} featured {...featured} />
-        ) : null}
-        {rest.map((project, index) => (
-          <ProjectCard key={project.name} index={index + 1} {...project} />
+        {projects.map((project, index) => (
+          <ProjectCard key={project.name} index={index} {...project} />
         ))}
       </div>
     </>
