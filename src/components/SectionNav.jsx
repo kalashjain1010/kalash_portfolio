@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const SECTIONS = [
   { id: "about", label: "About" },
@@ -23,7 +23,7 @@ const SectionNav = () => {
           }
         });
       },
-      { root: null, rootMargin: "-30% 0px -50% 0px", threshold: 0 }
+      { root: null, rootMargin: "-30% 0px -50% 0px", threshold: 0 },
     );
 
     els.forEach((el) => observer.observe(el));
@@ -32,32 +32,38 @@ const SectionNav = () => {
 
   return (
     <nav
-      className="fixed right-5 top-1/2 -translate-y-1/2 z-30 hidden lg:flex flex-col gap-3.5"
+      className="fixed right-5 top-1/2 -translate-y-1/2 z-30 hidden xl:flex flex-col gap-4"
       aria-label="Page sections"
     >
-      {SECTIONS.map(({ id, label }) => (
-        <a
-          key={id}
-          href={`#${id}`}
-          className="group flex items-center gap-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-          aria-label={`Go to ${label}`}
-        >
-          <span
-            className={`h-2 w-2 rounded-full transition-all duration-300 ${
-              activeId === id
-                ? "bg-accent scale-125 ring-2 ring-accent/30"
-                : "bg-text-muted group-hover:bg-text-secondary"
-            }`}
-          />
-          <span
-            className={`text-xs font-medium max-w-0 overflow-hidden whitespace-nowrap transition-all duration-300 group-hover:max-w-[80px] ${
-              activeId === id ? "text-accent max-w-[80px]" : "text-text-muted"
-            }`}
+      {SECTIONS.map(({ id, label }) => {
+        const on = activeId === id;
+        return (
+          <a
+            key={id}
+            href={`#${id}`}
+            className="group flex items-center justify-end gap-3"
+            aria-label={`Go to ${label}`}
+            aria-current={on ? "true" : undefined}
           >
-            {label}
-          </span>
-        </a>
-      ))}
+            <span
+              className={`text-[10px] uppercase tracking-[0.2em] font-semibold transition-all duration-300 ${
+                on
+                  ? "text-accent opacity-100 translate-x-0"
+                  : "text-text-muted opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
+              }`}
+            >
+              {label}
+            </span>
+            <span
+              className={`block transition-all duration-300 ${
+                on
+                  ? "h-8 w-0.5 bg-accent"
+                  : "h-2 w-0.5 bg-white/25 group-hover:h-4 group-hover:bg-white/50"
+              }`}
+            />
+          </a>
+        );
+      })}
     </nav>
   );
 };

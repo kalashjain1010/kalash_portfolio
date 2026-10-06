@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { textVariant, textVariant1 } from "../utils/motion";
@@ -32,18 +31,16 @@ const links = [
 const Social = () => {
   return (
     <>
-      <motion.h2 variants={textVariant1()} className={styles.sectionHeadText}>
-        Connect
-      </motion.h2>
-      <motion.p
-        variants={textVariant()}
-        className="font-body text-text-secondary mt-3 max-w-xl"
-      >
-        Find me elsewhere on the web.
+      <motion.p variants={textVariant()} className={styles.sectionLabel}>
+        Elsewhere
       </motion.p>
+      <motion.h2 variants={textVariant1()} className={styles.sectionHeadText}>
+        Find me
+        <span className="text-text-secondary"> online.</span>
+      </motion.h2>
       <motion.div
         variants={textVariant()}
-        className="mt-8 flex flex-wrap gap-3"
+        className="mt-10 grid sm:grid-cols-2 lg:grid-cols-5 gap-px bg-white/[0.07] border border-white/[0.07]"
       >
         {links.map(({ href, icon, label }) => (
           <a
@@ -51,17 +48,36 @@ const Social = () => {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 min-h-[44px] px-4 py-2.5 rounded-full bg-bg-card/60 border border-white/[0.06] text-text-secondary hover:text-accent hover:border-accent/30 hover:bg-accent-muted transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            className="flex items-center gap-3 min-h-[72px] px-5 bg-bg hover:bg-accent/[0.06] text-text-secondary hover:text-accent transition-colors group"
           >
-            <img src={icon} alt="" className="w-4 h-4 object-contain" />
-            <span className="font-body text-sm font-medium">{label}</span>
+            <img
+              src={icon}
+              alt=""
+              className="w-4 h-4 object-contain opacity-80 group-hover:opacity-100"
+            />
+            <span className="font-body text-sm font-semibold tracking-wide">
+              {label}
+            </span>
+            <span
+              aria-hidden
+              className="ml-auto text-accent opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
+            >
+              ↗
+            </span>
           </a>
         ))}
       </motion.div>
-      <footer className="mt-20 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <p className="font-display text-text-primary text-sm">Kalash Jain</p>
-        <p className="font-body text-text-muted text-sm">
-          © {new Date().getFullYear()} Kalash Jain.
+      <footer className="mt-24 pt-8 border-t border-white/[0.07] flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <div>
+          <p className="font-serif text-2xl sm:text-3xl tracking-[-0.03em] text-text-primary">
+            Kalash Jain
+          </p>
+          <p className="font-body text-text-muted text-sm mt-2">
+            Full stack developer · Built with care.
+          </p>
+        </div>
+        <p className="font-body text-text-muted text-xs tracking-wide uppercase">
+          © {new Date().getFullYear()}
         </p>
       </footer>
     </>

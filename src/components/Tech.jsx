@@ -1,31 +1,44 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { technologies } from "../constants";
-import { fadeIn, textVariant, textVariant1 } from "../utils/motion";
+import { textVariant, textVariant1 } from "../utils/motion";
 import { SectionWrapper2 } from "../hoc";
 
-const TechCard = ({ index, title, icon, link }) => (
-  <motion.a
-    href={link}
-    target="_blank"
-    rel="noopener noreferrer"
-    variants={fadeIn("up", "spring", index * 0.06, 0.5)}
-    className="flex items-center gap-3 p-4 rounded-2xl bg-bg-card/60 border border-white/[0.06] hover:border-accent/30 hover:bg-accent/[0.04] hover:-translate-y-0.5 transition-all duration-300 group min-w-0 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-  >
-    <div className="w-11 h-11 rounded-xl bg-bg-elevated border border-white/[0.05] flex items-center justify-center group-hover:border-accent/20 transition-colors flex-shrink-0">
-      {icon ? (
-        <img src={icon} alt="" className="w-6 h-6 object-contain" />
-      ) : (
-        <span className="font-display text-accent text-sm font-semibold">
-          {title.slice(0, 2)}
-        </span>
-      )}
+const row = [...technologies, ...technologies];
+
+const MarqueeRow = ({ reverse = false }) => (
+  <div className="relative overflow-hidden border-y border-white/[0.07] py-5">
+    <div
+      className={`flex w-max gap-10 sm:gap-14 ${
+        reverse ? "animate-marquee-rev" : "animate-marquee"
+      } hover:[animation-play-state:paused]`}
+    >
+      {row.map((tech, i) => (
+        <a
+          key={`${tech.title}-${i}`}
+          href={tech.link || "#"}
+          target={tech.link ? "_blank" : undefined}
+          rel={tech.link ? "noopener noreferrer" : undefined}
+          className="flex items-center gap-3 shrink-0 group"
+        >
+          {tech.icon ? (
+            <img
+              src={tech.icon}
+              alt=""
+              className="w-6 h-6 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+            />
+          ) : (
+            <span className="w-6 h-6 rounded-md border border-white/10 flex items-center justify-center text-[10px] font-semibold text-accent">
+              {tech.title.slice(0, 2)}
+            </span>
+          )}
+          <span className="font-display text-xl sm:text-2xl font-semibold tracking-tight text-text-secondary group-hover:text-accent transition-colors whitespace-nowrap">
+            {tech.title}
+          </span>
+        </a>
+      ))}
     </div>
-    <span className="font-body font-medium text-text-primary text-sm">
-      {title}
-    </span>
-  </motion.a>
+  </div>
 );
 
 const Tech = () => {
@@ -35,15 +48,16 @@ const Tech = () => {
         Stack
       </motion.p>
       <motion.h2 variants={textVariant1()} className={styles.sectionHeadText}>
-        Technologies
+        Tools I reach for
+        <span className="text-text-secondary"> every day.</span>
       </motion.h2>
       <p className="font-body text-text-secondary mt-4 max-w-xl text-sm sm:text-base leading-relaxed">
-        The stack I use across frontend, backend, and data.
+        Frontend, backend, and data — chosen for speed of shipping and clarity
+        under load.
       </p>
-      <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 min-w-0">
-        {technologies.map((tech, index) => (
-          <TechCard key={tech.title} index={index} {...tech} />
-        ))}
+      <div className="mt-12 space-y-0">
+        <MarqueeRow />
+        <MarqueeRow reverse />
       </div>
     </>
   );

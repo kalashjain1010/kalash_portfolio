@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const DOT_DENSITY = 0.0005;
-const MIN_NODES = 420;
-const MAX_NODES = 780;
-const LINE_RADIUS = 120;
-const MAX_LEGS = 8;
-const LERP = 0.06;
+const DOT_DENSITY = 0.00042;
+const MIN_NODES = 280;
+const MAX_NODES = 620;
+const LINE_RADIUS = 130;
+const MAX_LEGS = 7;
+const LERP = 0.075;
 
 const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
 
@@ -63,7 +63,7 @@ const Astro = ({ position, nodes, bounds, t, vel }) => {
           cx={bounds ? clamp(node.x, 0, bounds.w) : node.x}
           cy={bounds ? clamp(node.y, 0, bounds.h) : node.y}
           r={node.r}
-          fill={`rgba(0, 212, 170, ${node.o})`}
+          fill={`rgba(200, 255, 74, ${node.o})`}
         />
       ))}
       {nearby.map(({ node, dist }) => {
@@ -82,32 +82,42 @@ const Astro = ({ position, nodes, bounds, t, vel }) => {
               vel,
             )}
             fill="none"
-            stroke={`rgba(0, 212, 170, ${0.07 + 0.24 * (1 - dist / LINE_RADIUS) * walk})`}
-            strokeWidth={1 + 0.35 * walk}
+            stroke={`rgba(200, 255, 74, ${0.06 + 0.28 * (1 - dist / LINE_RADIUS) * walk})`}
+            strokeWidth={1 + 0.4 * walk}
             strokeLinecap="round"
           />
         );
       })}
+      <circle cx={safePos.x} cy={safePos.y} r="4.5" fill="#c8ff4a" />
       <circle
         cx={safePos.x}
         cy={safePos.y}
-        r="5"
-        fill="#00d4aa"
-        style={{ filter: "drop-shadow(0 0 20px rgba(0,212,170,0.5))" }}
+        r="14"
+        fill="none"
+        stroke="rgba(200,255,74,0.25)"
+        strokeWidth="1"
       />
     </svg>
   );
 };
 
+/** Full-bleed interactive field — the site’s signature visual. */
 const Hero = () => {
   const [nodes, setNodes] = useState([]);
   const [astro, setAstro] = useState({ x: 0, y: 0, vx: 0, vy: 0, t: 0 });
   const [bounds, setBounds] = useState(null);
+  const [enabled, setEnabled] = useState(true);
   const cursorRef = useRef({ x: 0, y: 0 });
   const astroRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!fine || reduced) {
+      setEnabled(false);
+      return;
+    }
 
     const scatter = (w, h) => {
       const count = clamp(Math.round(w * h * DOT_DENSITY), MIN_NODES, MAX_NODES);
@@ -117,14 +127,16 @@ const Hero = () => {
           id,
           x: Math.random() * w,
           y: Math.random() * h,
-          r: Math.random() < 0.2 ? 1.7 : 1.15,
-          o: 0.28 + Math.random() * 0.38,
+          r: Math.random() < 0.18 ? 1.6 : 1.05,
+          o: 0.18 + Math.random() * 0.32,
           phase: Math.random() * Math.PI * 2,
-          freq: 1.4 + Math.random() * 2.6,
+          freq: 1.4 + Math.random() * 2.4,
           side: Math.random() < 0.5 ? -1 : 1,
-          amp: 0.2 + Math.random() * 0.34,
+          amp: 0.18 + Math.random() * 0.3,
         })),
       );
+      cursorRef.current = { x: w * 0.72, y: h * 0.38 };
+      astroRef.current = { x: w * 0.72, y: h * 0.38 };
     };
 
     scatter(window.innerWidth, window.innerHeight);
@@ -134,14 +146,16 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
+    if (!enabled) return;
     const onMove = (e) => {
       cursorRef.current = { x: e.clientX, y: e.clientY };
     };
-    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
     return () => window.removeEventListener("mousemove", onMove);
-  }, []);
+  }, [enabled]);
 
   useEffect(() => {
+    if (!enabled) return;
     let raf;
     const update = () => {
       const cursor = cursorRef.current;
@@ -156,23 +170,23 @@ const Hero = () => {
     };
     raf = requestAnimationFrame(update);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [enabled]);
 
   return (
-    <div
-      className="fixed inset-0 -z-10 overflow-hidden w-full h-full"
-      style={{ left: 0, right: 0, top: 0, bottom: 0 }}
-      aria-hidden
-    >
+    <div className="fixed inset-0 -z-10 overflow-hidden w-full h-full" aria-hidden>
       <div className="absolute inset-0 bg-bg" />
-      <div className="absolute inset-0 bg-gradient-to-b from-bg via-transparent to-bg opacity-60" />
-      <Astro
-        position={astro}
-        nodes={nodes}
-        bounds={bounds}
-        t={astro.t}
-        vel={{ x: astro.vx, y: astro.vy }}
-      />
+      {enabled ? (
+        <Astro
+          position={astro}
+          nodes={nodes}
+          bounds={bounds}
+          t={astro.t}
+          vel={{ x: astro.vx, y: astro.vy }}
+        />
+      ) : (
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,rgba(200,255,74,0.08),transparent_55%)]" />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg pointer-events-none" />
     </div>
   );
 };
