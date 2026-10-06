@@ -41,6 +41,8 @@ import wordcount from "./wordcount.webp";
 import shoestore from "./shoestore.png";
 import whoami from "./whoami.png";
 import sargam from "./sargam.png";
+import expenseTracker from "./expense-tracker.png";
+import expenseTrackerMobile from "./expense-tracker-mobile.png";
 
 export {
   kanban,
@@ -81,4 +83,6 @@ export {
   pazy_logo,
   whoami,
   sargam,
+  expenseTracker,
+  expenseTrackerMobile,
 };

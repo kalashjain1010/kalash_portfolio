@@ -24,6 +24,8 @@ import {
   pazy_logo,
   whoami,
   sargam,
+  expenseTracker,
+  expenseTrackerMobile,
   // personal,
   // live
 } from "../assets";
@@ -197,6 +199,52 @@ const testimonials = [
   // },
 ];
 const projects = [
+  {
+    name: "Expense Tracker",
+    description:
+      "Personal money tracker for everyone — Google Sign-In, auto-created spreadsheet in your Drive, spend / income / card, and a dashboard. Your sheet, your data. Companion Android SMS import lives in a separate repo.",
+    tags: [
+      {
+        name: "React",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Express",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Google Sheets",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: expenseTracker,
+    project_link: "https://trackexpense.vercel.app",
+    source_code_link: "https://github.com/kalashjain1010/expense-tracker",
+    minImg: github,
+  },
+  {
+    name: "Expense Tracker SMS",
+    description:
+      "Android app that reads bank / UPI debit SMS, suggests a category, and after you confirm writes into the same Google Sheet as the web app. Confirm & next, skip, and clear-all review flow.",
+    tags: [
+      {
+        name: "React Native",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Expo",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Android SMS",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: expenseTrackerMobile,
+    project_link: "https://github.com/kalashjain1010/expense-tracker-mobile",
+    source_code_link: "https://github.com/kalashjain1010/expense-tracker-mobile",
+    minImg: github,
+  },
   {
     name: "Sargam",
     description:
