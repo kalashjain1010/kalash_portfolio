@@ -6,8 +6,6 @@ import { slideIn } from "../utils/motion";
 import { useToast } from "./Toast";
 
 const CONTACT_EMAIL = "kalashjain54@gmail.com";
-/** FormSubmit endpoint — delivers to inbox without EmailJS Gmail OAuth. */
-const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
 const fieldClass =
   "w-full px-4 py-3 rounded-xl bg-bg-elevated/80 border border-white/10 text-text-primary placeholder:text-text-muted font-body text-sm outline-none transition-all focus:border-accent/40";
@@ -15,7 +13,12 @@ const fieldClass =
 const Contact = () => {
   const formRef = useRef();
   const toast = useToast();
-  const [form, setForm] = useState({ name: "", email: "", message: "", website: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+    website: "",
+  });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -42,7 +45,6 @@ const Contact = () => {
       toast.error("Please fix the highlighted fields.");
       return;
     }
-    // honeypot — bots fill this; humans never see it
     if (form.website) {
       toast.success("Thanks — I’ll get back to you soon.");
       setForm({ name: "", email: "", message: "", website: "" });
@@ -51,7 +53,7 @@ const Contact = () => {
 
     setLoading(true);
     try {
-      const res = await fetch(FORMSUBMIT_URL, {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,31 +63,13 @@ const Contact = () => {
           name: form.name.trim(),
           email: form.email.trim(),
           message: form.message.trim(),
-          _replyto: form.email.trim(),
-          _subject: `Portfolio · message from ${form.name.trim()}`,
-          _template: "table",
-          _captcha: "false",
+          website: form.website,
         }),
       });
 
       const data = await res.json().catch(() => ({}));
-      const ok =
-        res.ok &&
-        (data.success === true ||
-          data.success === "true" ||
-          String(data.message || "")
-            .toLowerCase()
-            .includes("thank"));
-
-      if (!ok) {
-        const msg = String(data.message || "");
-        if (/activate|confirm|check your email/i.test(msg)) {
-          toast.info(
-            "Almost there — check kalashjain54@gmail.com and click FormSubmit’s activation link once, then try again."
-          );
-          return;
-        }
-        throw new Error(msg || `Request failed (${res.status})`);
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || `Request failed (${res.status})`);
       }
 
       setForm({ name: "", email: "", message: "", website: "" });
@@ -93,7 +77,7 @@ const Contact = () => {
     } catch (err) {
       console.error(err);
       toast.error(
-        "Couldn’t send right now. Email me at kalashjain54@gmail.com instead."
+        `Couldn’t send right now. Email me at ${CONTACT_EMAIL} instead.`
       );
     } finally {
       setLoading(false);
@@ -117,7 +101,6 @@ const Contact = () => {
           className="mt-8 flex flex-col gap-5"
           noValidate
         >
-          {/* honeypot */}
           <input
             type="text"
             name="website"
