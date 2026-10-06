@@ -6,6 +6,8 @@ import { slideIn } from "../utils/motion";
 import { useToast } from "./Toast";
 
 const CONTACT_EMAIL = "kalashjain54@gmail.com";
+/** Web3Forms access key — safe to use client-side (aliases your inbox). */
+const WEB3FORMS_ACCESS_KEY = "9c976351-9290-4d33-b38e-d32e566f8ed5";
 
 const fieldClass =
   "w-full px-4 py-3 rounded-xl bg-bg-elevated/80 border border-white/10 text-text-primary placeholder:text-text-muted font-body text-sm outline-none transition-all focus:border-accent/40";
@@ -53,24 +55,40 @@ const Contact = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("/api/contact", {
+      const payload = {
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: `Portfolio message from ${form.name.trim()}`,
+        from_name: form.name.trim(),
+        name: form.name.trim(),
+        email: form.email.trim(),
+        replyto: form.email.trim(),
+        message: form.message.trim(),
+      };
+
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      const ok = res.ok && (data.success === true || data.success === "true");
+      if (!ok) {
+        throw new Error(data.message || `Request failed (${res.status})`);
+      }
+
+      // Best-effort GitHub backup (does not block success)
+      fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: form.name.trim(),
           email: form.email.trim(),
           message: form.message.trim(),
-          website: form.website,
         }),
-      });
-
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data.ok) {
-        throw new Error(data.error || `Request failed (${res.status})`);
-      }
+      }).catch(() => {});
 
       setForm({ name: "", email: "", message: "", website: "" });
       toast.success("Thanks — I’ll get back to you soon.");
