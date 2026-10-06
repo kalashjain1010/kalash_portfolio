@@ -18,7 +18,7 @@ const links = [
     label: "Twitter",
   },
   {
-    href: "https://www.instagram.com/kalash.png/",
+    href: "https://www.instagram.com/maikalashnahihu/",
     icon: instagram,
     label: "Instagram",
   },
