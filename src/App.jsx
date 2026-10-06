@@ -7,22 +7,25 @@ import Experience from "./components/Experience";
 import Tech from "./components/Tech";
 import Contact from "./components/Contact";
 import Social from "./components/Social";
+import { ToastProvider } from "./components/Toast";
 import "./customScrollbar.css";
 
 const App = () => {
   return (
     <BrowserRouter basename="/">
-      <div className="min-w-0 w-full overflow-x-hidden">
-        <Layout>
-          <Content />
-          <About />
-          <Experience />
-          <Tech />
-          <Works />
-          <Contact />
-          <Social />
-        </Layout>
-      </div>
+      <ToastProvider>
+        <div className="min-w-0 w-full overflow-x-hidden">
+          <Layout>
+            <Content />
+            <About />
+            <Experience />
+            <Tech />
+            <Works />
+            <Contact />
+            <Social />
+          </Layout>
+        </div>
+      </ToastProvider>
     </BrowserRouter>
   );
 };

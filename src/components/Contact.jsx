@@ -1,19 +1,23 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "emailjs-com";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
+import { useToast } from "./Toast";
+
+const CONTACT_EMAIL = "kalashjain54@gmail.com";
+/** FormSubmit endpoint — delivers to inbox without EmailJS Gmail OAuth. */
+const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
 const fieldClass =
-  "w-full px-4 py-3 rounded-xl bg-bg-elevated/80 border border-white/10 text-text-primary placeholder:text-text-muted font-body text-sm outline-none transition-all";
+  "w-full px-4 py-3 rounded-xl bg-bg-elevated/80 border border-white/10 text-text-primary placeholder:text-text-muted font-body text-sm outline-none transition-all focus:border-accent/40";
 
 const Contact = () => {
   const formRef = useRef();
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const toast = useToast();
+  const [form, setForm] = useState({ name: "", email: "", message: "", website: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState(null);
 
   const validate = (values) => {
     const next = {};
@@ -30,39 +34,70 @@ const Contact = () => {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: undefined }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const nextErrors = validate(form);
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length) return;
+    if (Object.keys(nextErrors).length) {
+      toast.error("Please fix the highlighted fields.");
+      return;
+    }
+    // honeypot — bots fill this; humans never see it
+    if (form.website) {
+      toast.success("Thanks — I’ll get back to you soon.");
+      setForm({ name: "", email: "", message: "", website: "" });
+      return;
+    }
 
     setLoading(true);
-    setStatus(null);
-    emailjs
-      .send(
-        "service_lamq8af",
-        "template_5o9d5wm",
-        {
-          from_name: form.name,
-          to_name: "Kalash Jain",
-          from_email: form.email,
-          to_email: "kalashjain54@gmail.com",
-          message: form.message,
+    try {
+      const res = await fetch(FORMSUBMIT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        "rww7YYWd1MUNjSXqv"
-      )
-      .then(
-        () => {
-          setLoading(false);
-          setForm({ name: "", email: "", message: "" });
-          setStatus("ok");
-        },
-        (err) => {
-          setLoading(false);
-          console.error(err);
-          setStatus("err");
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          message: form.message.trim(),
+          _replyto: form.email.trim(),
+          _subject: `Portfolio · message from ${form.name.trim()}`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+      const ok =
+        res.ok &&
+        (data.success === true ||
+          data.success === "true" ||
+          String(data.message || "")
+            .toLowerCase()
+            .includes("thank"));
+
+      if (!ok) {
+        const msg = String(data.message || "");
+        if (/activate|confirm|check your email/i.test(msg)) {
+          toast.info(
+            "Almost there — check kalashjain54@gmail.com and click FormSubmit’s activation link once, then try again."
+          );
+          return;
         }
+        throw new Error(msg || `Request failed (${res.status})`);
+      }
+
+      setForm({ name: "", email: "", message: "", website: "" });
+      toast.success("Thanks — I’ll get back to you soon.");
+    } catch (err) {
+      console.error(err);
+      toast.error(
+        "Couldn’t send right now. Email me at kalashjain54@gmail.com instead."
       );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -80,7 +115,19 @@ const Contact = () => {
           ref={formRef}
           onSubmit={handleSubmit}
           className="mt-8 flex flex-col gap-5"
+          noValidate
         >
+          {/* honeypot */}
+          <input
+            type="text"
+            name="website"
+            value={form.website}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
+            className="absolute opacity-0 pointer-events-none h-0 w-0"
+            aria-hidden="true"
+          />
           <label className="flex flex-col gap-1.5">
             <span className="font-body text-text-primary font-medium text-sm">
               Your name
@@ -92,6 +139,7 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="What’s your name?"
               className={fieldClass}
+              disabled={loading}
             />
             {errors.name ? (
               <p className={styles.errorText}>{errors.name}</p>
@@ -108,6 +156,7 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="you@example.com"
               className={fieldClass}
+              disabled={loading}
             />
             {errors.email ? (
               <p className={styles.errorText}>{errors.email}</p>
@@ -124,17 +173,12 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="What would you like to say?"
               className={`${fieldClass} resize-none`}
+              disabled={loading}
             />
             {errors.message ? (
               <p className={styles.errorText}>{errors.message}</p>
             ) : null}
           </label>
-          {status === "ok" ? (
-            <p className="text-sm text-accent">Thanks — I’ll get back to you soon.</p>
-          ) : null}
-          {status === "err" ? (
-            <p className="text-sm text-amber-400/90">Something went wrong. Please try again.</p>
-          ) : null}
           <button
             type="submit"
             disabled={loading}
@@ -164,10 +208,10 @@ const Contact = () => {
             Email
           </p>
           <a
-            href="mailto:kalashjain54@gmail.com"
+            href={`mailto:${CONTACT_EMAIL}`}
             className="font-body text-text-primary text-sm mt-2 inline-block hover:text-accent transition-colors break-all"
           >
-            kalashjain54@gmail.com
+            {CONTACT_EMAIL}
           </a>
         </div>
       </motion.aside>
